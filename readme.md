@@ -14,11 +14,11 @@ Github repo master & overall editor: Hanbo
 Looking at the brief and comparing our Lab 4 design with the required project design, we have the following requirements:
 * *Coming up with a machine code*
 * *Add Jump Multiplexer*: with inputs PC+4 and Result which outputs WD3 (write data of register file). This will be used to write the return address after a jump to the register file, when a jump takes place
-* *Add Trigger Multiplexer*: multiplexer with select line trigger
+* *Add Trigger Multiplexer*: multiplexer with select line based on trigger
 * *Changes in Control Unit*
 * *Adding Data Memory and Multiplexer*
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/205300484-99e6d685-f291-4da4-8052-d06e83d7837c.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/205308394-d7acb6d3-dbe2-4608-9d8b-682ef67b2c0d.png">
 
 
 # 2. Implementing RV321 Design (For Team Code) #
