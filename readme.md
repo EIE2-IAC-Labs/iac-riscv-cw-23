@@ -7,21 +7,27 @@ Github repo master & overall editor: Hanbo
 3. **Implementing RV321 Design (For Reference Program)**
 4. **Implementing Pipelining**
 
-# Planning Single-Cycle RV321 Design #
+# 1. Planning Single-Cycle RV321 Design #
+
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/69715492/205291667-2c9d8855-a6cf-4c51-a933-b5d381ea13d6.png">
+
 Looking at the brief and comparing our Lab 4 design with the required project design, we have the following requirements:
 * *Coming up with a machine code*
-* *Add "Write Multiplexer"* with inputs PC+4 and Result which outputs WD3 (write data of register file). This will be used to write the return address after a jump to the register file, when a jump takes place
+* *Add Jump Multiplexer*: with inputs PC+4 and Result which outputs WD3 (write data of register file). This will be used to write the return address after a jump to the register file, when a jump takes place
+* *Add Trigger Multiplexer*: multiplexer with select line trigger
 * *Changes in Control Unit*
 * *Adding Data Memory and Multiplexer*
 
-# Implementing RV321 Design (For Team Code) #
-(Note: We will all be working on the main branch for now: PRs and reviews takes a lot of time and it is unneeded at this stage as everyone is working on their individual modules.)
-Instruction Memory - Diyang
-Control Unit - Pengyuan
-Sign extend - Pengyuan
-ALU - Anish, Hanbo
-Data Memory - Anish, Hanbo
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/205300484-99e6d685-f291-4da4-8052-d06e83d7837c.png">
 
-# Implementing RV321 Design (For Reference Program) #
 
-# Implementing Pipelining #
+# 2. Implementing RV321 Design (For Team Code) #
+## Creating Machine Code ##
+## Jump Multiplexer ##
+## Trigger Multiplexer ##
+## Control Unit ##
+## Data Memory and Multiplexer ##
+
+# 3. Implementing RV321 Design (For Reference Program) #
+
+# 4. Implementing Pipelining #
