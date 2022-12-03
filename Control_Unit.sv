@@ -4,7 +4,7 @@ module Control_Unit (
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
-    output logic [1:0]  ImmSrc,
+    output logic [2:0]  ImmSrc,
     output logic        PCsrc,
     output logic        ResultSrc,
     output logic        MemWrite
@@ -31,51 +31,55 @@ always_comb begin
 
     7'b0010011: begin                      // Immediate ALU operation
         assign RegWrite = 1;
-        assign ImmSrc = 2'b00;
+        assign ImmSrc = 3'b000;
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
         //assign Branch = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
+        assign PCsrc = 0;
     end
 
     7'b0000011: begin                     //  Load
         assign RegWrite = 1;
-        assign ImmSrc = 2'b00;
+        assign ImmSrc = 3'b000;
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 1;
         //assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
+        assign PCsrc = 0;
     end
 
     7'b0100011: begin                     // store
         assign RegWrite = 0;
-        assign ImmSrc = 2'b01;
+        assign ImmSrc = 3'b001;
         assign ALUsrc = 1;
         assign MemWrite = 1;
         assign ResultSrc = 0;
         //assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
+        assign PCsrc = 0;
     end
 
     7'b0110011: begin                     // R type
         assign RegWrite = 1;
-        assign ImmSrc = 2'b00;
+        assign ImmSrc = 3'b000;
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
         //assign Branch = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
+        assign PCsrc = 0;
     end
 
     7'b1100011: begin                      // Branch
         assign RegWrite = 0;
-        assign ImmSrc = 2'b10;
+        assign ImmSrc = 3'b010;
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
@@ -98,7 +102,7 @@ always_comb begin
 
     7'b1100111: begin                      // jump and link register
         assign RegWrite = 1;
-        assign ImmSrc = 2'b11;
+        assign ImmSrc = 3'b011;
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
@@ -110,7 +114,7 @@ always_comb begin
 
     7'b1101111: begin                      // jump and link
         assign RegWrite = 1;
-        assign ImmSrc = 2'b11;
+        assign ImmSrc = 3'b011;
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
@@ -120,10 +124,20 @@ always_comb begin
         assign PCsrc = 1;
     end
 
+    7'b0110111: begin                      // load upper immediate
+        assign RegWrite = 1;
+        assign ImmSrc = 3'b100;
+        assign ALUsrc = 1;
+        assign MemWrite = 0;
+        assign ResultSrc = 0;
+        //assign Branch = 1;
+        assign ALUOp = 2'b11;
+        assign MUXJUMP = 0;
+        assign PCsrc = 0;
+    end
     endcase
 
     casez(ALUOp)
-    default: assign dummy = 0;
     2'b00: assign ALUctrl = 000;
     2'b01: assign ALUctrl = 001;
     2'b10: casez(funct3)
@@ -134,6 +148,7 @@ always_comb begin
            3'b111: assign ALUctrl = 3'b010;                            // and
            3'b001: assign ALUctrl = 3'b100;                            // shift left
            endcase
+    2'b11: assign ALUctrl = 101;                                       // ALUResult = SrcB
     endcase
 end
 
