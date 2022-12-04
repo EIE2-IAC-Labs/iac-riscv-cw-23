@@ -7,13 +7,15 @@ module Instr_Mem # (
     output logic [OUT_WIDTH-1:0] RD
 );
 
-logic [DATA_WIDTH-1:0] array [2**16-1:0];
+logic [11:0] addr = A[11:0] 
+
+logic [DATA_WIDTH-1:0] array [2**12:0];
 
 initial begin
         $display ("Loading Instr_Mem.");
         $readmemh("counter.mem", array); 
 end;
 
-assign RD = {array [A+3], array [A+2], array [A+1], array[A+0]};
+assign RD = {array [addr+3], array [addr+2], array [addr+1], array[addr+0]};
 
 endmodule
