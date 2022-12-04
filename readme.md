@@ -26,13 +26,14 @@ Looking at the brief and comparing our Lab 4 design with the required project de
 # 2. Implementing RV321 Design (For Team Code) #
 ## Creating Machine Code ##
 
-## Implement JAL ##
-## Change top level module to include Jump Multiplexer and Trigger Multiplexer ##
+## Changes in ALU ##
 
 ## Control Unit ##
+- implement JAL
 ## Data Memory and Multiplexer ##
 - implement load and store
 
+## Top level module cheks and testing ##
 # 3. Implementing RV321 Design (For Reference Program) #
 
 # 4. Implementing Pipelining #
