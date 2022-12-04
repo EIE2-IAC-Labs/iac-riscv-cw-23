@@ -1,7 +1,7 @@
 # Team 23
 Github repo master: Hanbo
 
-Overal editor & writeup: Anish
+Editor & writeup: Anish & Anish
 
 # Summary of our approach (needs to be edited at the end) #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
@@ -24,6 +24,7 @@ Looking at the brief and comparing our Lab 4 design with the required project de
 
 
 # 2. Implementing RV321 Design (For Team Code) #
+For this stage of the project, we are all committing directly to the main branch. Since we are all working on individual modules so there won't be conflicts.
 ## Creating Machine Code ##
 
 ## Changes in ALU ##
