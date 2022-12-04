@@ -1,5 +1,7 @@
 # Team 23
-Github repo master & overall editor: Hanbo
+Github repo master: Hanbo
+
+Overal editor & writeup: Anish
 
 # Summary of our approach (needs to be edited at the end) #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
@@ -8,7 +10,7 @@ Github repo master & overall editor: Hanbo
 4. **Implementing Pipelining**
 
 # 1. Planning Single-Cycle RV321 Design #
-
+The planning section was done together as a group.
 <img width="900" alt="image" src="https://user-images.githubusercontent.com/69715492/205291667-2c9d8855-a6cf-4c51-a933-b5d381ea13d6.png">
 
 Looking at the brief and comparing our Lab 4 design with the required project design, we have the following requirements:
@@ -23,10 +25,13 @@ Looking at the brief and comparing our Lab 4 design with the required project de
 
 # 2. Implementing RV321 Design (For Team Code) #
 ## Creating Machine Code ##
-## Jump Multiplexer ##
-## Trigger Multiplexer ##
+
+## Implement JAL ##
+## Change top level module to include Jump Multiplexer and Trigger Multiplexer ##
+
 ## Control Unit ##
 ## Data Memory and Multiplexer ##
+- implement load and store
 
 # 3. Implementing RV321 Design (For Reference Program) #
 
