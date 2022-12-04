@@ -46,41 +46,41 @@ Working together, we devised the following machine code.
 
 graph note: X represents don't care.
 
-- 1. implement Immediate type (Op = 7'b0010011)
+### 1. implement Immediate type (Op = 7'b0010011)
 R-type instruction should do some ALU operation with rs1 and Sign-extended Immediate and store it into the destination register rd. 
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform I-type instruction. (Orange Line)
-![I-Type](\image\I-Type.jpg)
+![I-Type](/image/I-Type.jpg)
 
-- 2. implement Load Word (Op = 7'b0000011)
+### 2. implement Load Word (Op = 7'b0000011)
 Load word instruction should load the value of (memory address: [value in register file (rs1) + Immediate]) into destination register rd. 
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform load word. (Orange Line)
-![Load_Word](\image\load_word.jpg)
+![Load_Word](/image/load_word.jpg)
 
-- 3. implement Store Word (Op = 7'b0100011)
+### 3. implement Store Word (Op = 7'b0100011)
 Store word instruction should store the value of register file rs2 to (memory address: [value in register file (rs1) + Immediate]).
 Next cycle = PC + 4.
-![Store_Word](\image\store_word.jpg)
+![Store_Word](/image/store_word.jpg)
 
 The following graph shows how the control unit signals controls the entire program to perform store load. (Orange Line)
 
-- 4. implement Register type (Op = 7'b0110011)
+### 4. implement Register type (Op = 7'b0110011)
 R-type instruction should do some ALU operation with rs1 and rs2 and store it into the destination register rd. 
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform R-type instruction. (Orange Line)
-![R-Type](\image\R-Type.jpg)
+![R-Type](/image/R-Type.jpg)
 
-- 5. implement Branch Equal (Op = 7'b1100011)
+### 5. implement Branch Equal (Op = 7'b1100011)
 Branch Equal instruction should compare two register value rs1 and rs2. If they are equal, next cycle jumps to PC + Immediate.
 
 The following graph shows how the control unit signals controls the entire program to perform BEQ. (Equal ? Orange Line : Purple Line)
-![Branch_Equal](\image\branch_equal.jpg)
+![Branch_Equal](/image/branch_equal.jpg)
 
-- 6. implement Jump and Link Register or Return (Op = 7'b1100111)
+### 6. implement Jump and Link Register or Return (Op = 7'b1100111)
 Jump and Link instruction should obtain two goals. 
 1. The counter should jump to register file rs1 + immediate, normally (return address value ra + Immediate).
 2. return address register ra (0x01) should store the address of the next cycle (current PC + 4)
@@ -88,9 +88,9 @@ Jump and Link instruction should obtain two goals.
 The following graph shows how the control unit signals controls the entire program to perform jump and link register.
 Orange line performs the first goal.
 Purple line performs the second goal.
-![Jump_and_Link_Register](\image\jump_and_link_register.jpg)
+![Jump_and_Link_Register](/image/jump_and_link_register.jpg)
 
-- 7. implement Jump and Link (Op = 7'b1101111)
+### 7. implement Jump and Link (Op = 7'b1101111)
 Jump and Link instruction should obtain two goals. 
 1. The counter should jump to current PC value + Immediate
 2. return address register ra (0x01) should store the address of the next cycle (current PC + 4)
@@ -98,14 +98,14 @@ Jump and Link instruction should obtain two goals.
 The following graph shows how the control unit signals controls the entire program to perform jump and link.
 Orange line performs the first goal.
 Purple line performs the second goal.
-![Jump_and_Link](\image\jump_and_link.jpg)
+![Jump_and_Link](/image/jump_and_link.jpg)
 
-- 8. implement Load Upper Immediate (Op = 7'b0110111)
+### 8. implement Load Upper Immediate (Op = 7'b0110111)
 Load Upper Immediate instruction should load the {20 bit immediate, 12'b0} into destination register rd.
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform LUI. (Orange Line)
-![Load_Upper_Immediate](\image\load_upper_immediate.jpg)
+![Load_Upper_Immediate](/image/load_upper_immediate.jpg)
 
 
 Main Decoder Table:
