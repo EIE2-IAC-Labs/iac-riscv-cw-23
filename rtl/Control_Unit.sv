@@ -1,5 +1,5 @@
 module Control_Unit (
-    input logic         EQ,
+    input logic         Zero,
     input logic  [31:0] instr,
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
@@ -7,7 +7,9 @@ module Control_Unit (
     output logic [2:0]  ImmSrc,
     output logic        PCsrc,
     output logic        ResultSrc,
-    output logic        MemWrite
+    output logic        MemWrite,
+    output logic        MUXJUMP,                // MUXJUMP = 0 so that register write in result. MUXJUMP = 1 so that register write in PC+4
+    output logic        JUMPRT     
 );
 
 logic [6:0]         op;
@@ -17,7 +19,7 @@ logic [1:0]         ALUOp;
 logic [1:0]         opfunct7;
 //logic               Branch;
 logic               dummy;
-logic               MUXJUMP;                // MUXJUMP = 0 so that register write in result. MUXJUMP = 1 so that register write in PC+4
+
 
 assign op = instr[6:0];
 assign funct3 = instr[14:12];
@@ -39,6 +41,7 @@ always_comb begin
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
         assign PCsrc = 0;
+        assign JUMPRT = 0;
     end
 
     7'b0000011: begin                     //  Load
@@ -51,6 +54,7 @@ always_comb begin
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
         assign PCsrc = 0;
+        assign JUMPRT = 0;
     end
 
     7'b0100011: begin                     // store
@@ -63,6 +67,7 @@ always_comb begin
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
         assign PCsrc = 0;
+        assign JUMPRT = 0;
     end
 
     7'b0110011: begin                     // R type
@@ -75,6 +80,7 @@ always_comb begin
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
         assign PCsrc = 0;
+        assign JUMPRT = 0;
     end
 
     7'b1100011: begin                      // Branch
@@ -86,14 +92,15 @@ always_comb begin
         //assign Branch = 1;
         assign ALUOp = 2'b01;
         assign MUXJUMP = 0;
+        assign JUMPRT = 0;
         
         casez(funct3)
             default: assign dummy = 0;
-            3'b000: if (EQ)
+            3'b000: if (Zero)
                         assign PCsrc = 1;
                     else
                         assign PCsrc = 0;
-            3'b001: if (EQ)
+            3'b001: if (Zero)
                         assign PCsrc = 0;
                     else
                         assign PCsrc = 1;
@@ -110,6 +117,7 @@ always_comb begin
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
         assign PCsrc = 1;
+        assign JUMPRT = 1;
     end
 
     7'b1101111: begin                      // jump and link
@@ -122,6 +130,7 @@ always_comb begin
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
         assign PCsrc = 1;
+        assign JUMPRT = 0;
     end
 
     7'b0110111: begin                      // load upper immediate
@@ -134,6 +143,7 @@ always_comb begin
         assign ALUOp = 2'b11;
         assign MUXJUMP = 0;
         assign PCsrc = 0;
+        assign JUMPRT = 0;
     end
     endcase
 
@@ -148,7 +158,7 @@ always_comb begin
            3'b111: assign ALUctrl = 3'b010;                            // and
            3'b001: assign ALUctrl = 3'b100;                            // shift left
            endcase
-    2'b11: assign ALUctrl = 101;                                       // ALUResult = SrcB
+    2'b11: assign ALUctrl = 3'b101;                                       // ALUResult = SrcB
     endcase
 end
 
