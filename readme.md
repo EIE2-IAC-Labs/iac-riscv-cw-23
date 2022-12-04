@@ -44,26 +44,26 @@ Working together, we devised the following machine code.
 
 ## Control Unit ##
 
-graph note: X represents don't care.
+*__graph note: X represents don't care.__*
 
 ### 1. implement Immediate type (Op = 7'b0010011)
 R-type instruction should do some ALU operation with rs1 and Sign-extended Immediate and store it into the destination register rd. 
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform I-type instruction. (Orange Line)
-![I-Type](/image/I-Type.jpg)
+<p align="center"> <img width="600" height = "500" alt="image" src="/image/I-Type.jpg" > </p><BR>
 
 ### 2. implement Load Word (Op = 7'b0000011)
 Load word instruction should load the value of (memory address: [value in register file (rs1) + Immediate]) into destination register rd. 
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform load word. (Orange Line)
-![Load_Word](/image/load_word.jpg)
+<p align="center"> <img width="600" height = "500" alt="image" src="/image/load_word.jpg" > </p><BR>
 
 ### 3. implement Store Word (Op = 7'b0100011)
 Store word instruction should store the value of register file rs2 to (memory address: [value in register file (rs1) + Immediate]).
 Next cycle = PC + 4.
-![Store_Word](/image/store_word.jpg)
+<p align="center"> <img width="600" height = "500" alt="image" src="/image/store_word.jpg" > </p><BR>
 
 The following graph shows how the control unit signals controls the entire program to perform store load. (Orange Line)
 
@@ -72,13 +72,13 @@ R-type instruction should do some ALU operation with rs1 and rs2 and store it in
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform R-type instruction. (Orange Line)
-![R-Type](/image/R-Type.jpg)
+<p align="center"> <img width="600" height = "500" alt="image" src="/image/R-Type.jpg" > </p><BR>
 
 ### 5. implement Branch Equal (Op = 7'b1100011)
 Branch Equal instruction should compare two register value rs1 and rs2. If they are equal, next cycle jumps to PC + Immediate.
 
 The following graph shows how the control unit signals controls the entire program to perform BEQ. (Equal ? Orange Line : Purple Line)
-![Branch_Equal](/image/branch_equal.jpg)
+<p align="center"> <img width="600" height = "530" alt="image" src="/image/branch_equal.jpg" > </p><BR>
 
 ### 6. implement Jump and Link Register or Return (Op = 7'b1100111)
 Jump and Link instruction should obtain two goals. 
@@ -88,7 +88,7 @@ Jump and Link instruction should obtain two goals.
 The following graph shows how the control unit signals controls the entire program to perform jump and link register.
 Orange line performs the first goal.
 Purple line performs the second goal.
-![Jump_and_Link_Register](/image/jump_and_link_register.jpg)
+<p align="center"> <img width="600" height = "500" alt="image" src="/image/jump_and_link_register.jpg" > </p><BR>
 
 ### 7. implement Jump and Link (Op = 7'b1101111)
 Jump and Link instruction should obtain two goals. 
@@ -98,14 +98,14 @@ Jump and Link instruction should obtain two goals.
 The following graph shows how the control unit signals controls the entire program to perform jump and link.
 Orange line performs the first goal.
 Purple line performs the second goal.
-![Jump_and_Link](/image/jump_and_link.jpg)
+<p align="center"> <img width="600" height = "550" alt="image" src="/image/jump_and_link.jpg" > </p><BR>
 
 ### 8. implement Load Upper Immediate (Op = 7'b0110111)
 Load Upper Immediate instruction should load the {20 bit immediate, 12'b0} into destination register rd.
 Next cycle = PC + 4.
 
 The following graph shows how the control unit signals controls the entire program to perform LUI. (Orange Line)
-![Load_Upper_Immediate](/image/load_upper_immediate.jpg)
+<p align="center"> <img width="600" height = "550" alt="image" src="/image/load_upper_immediate.jpg" > </p><BR>
 
 
 Main Decoder Table:
