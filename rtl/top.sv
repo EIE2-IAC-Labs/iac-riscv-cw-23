@@ -82,7 +82,7 @@ ALU alu_instance(
     .ALUctrl (ALUctrl),
     .ALUop1 (ALUop1),
     .ALUop2 (ALUop2),
-    .SUM (ALUout),
+    .ALUResult (ALUout),
     .EQ (EQ)
 );
 
