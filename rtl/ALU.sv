@@ -27,3 +27,4 @@ module ALU #(
         default: EQ = 1'b0;
         endcase
 endmodule
+
