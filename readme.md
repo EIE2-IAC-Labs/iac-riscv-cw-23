@@ -38,7 +38,8 @@ We delegated the tasks modularly:
 ## Creating Machine Code ##
 Working together, we devised the following machine code. 
 
-<img width="250" alt="image" src="https://user-images.githubusercontent.com/69715492/205517888-6aca9d06-e639-4c04-9c5a-2a6ac62d4b65.png">
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/69715492/205523581-99092f7e-366d-4db3-82bd-83c75c2459d6.png">
+
 
 ## Changes in ALU ##
 
