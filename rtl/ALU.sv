@@ -5,7 +5,7 @@ module ALU #(
     input logic ALUctrl,
     input logic [DATA_WIDTH-1:0] ALUop1,
     input logic [DATA_WIDTH-1:0] ALUop2,
-    output logic [DATA_WIDTH-1:0] SUM,
+    output logic [DATA_WIDTH-1:0] ALUResult,
     output logic EQ //whether ALUop1 and ALUop2 are equal or not
     //can be either 0 or 1
 );
