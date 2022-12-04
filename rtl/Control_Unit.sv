@@ -102,7 +102,7 @@ always_comb begin
 
     7'b1100111: begin                      // jump and link register
         assign RegWrite = 1;
-        assign ImmSrc = 3'b011;
+        assign ImmSrc = 3'b000;
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
