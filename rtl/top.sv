@@ -4,6 +4,7 @@ module top #(
 ) (
     input logic clk,
     input logic rst,
+    input logic TRIGGERSEL,
     output logic [DATA_WIDTH-1:0] a0
 );
 
@@ -30,6 +31,8 @@ logic [DATA_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] PC;
 //dataMemory
 logic [DATA_WIDTH-1:0] ReadData;
+logic [DATA_WIDTH-1:0] TriggerOutput;
+logic [DATA_WIDTH-1:0] Result;
 
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
@@ -95,5 +98,9 @@ DataMemory data_memory_instance(
     .WD (regOp2),
     .RD (ReadData)
 );
+
+assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux
+assign Result = ResultSrc ? TriggerOutput : ALUout; //Mux for data memory
+
 
 endmodule
