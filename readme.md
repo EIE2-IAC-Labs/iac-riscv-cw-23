@@ -135,7 +135,13 @@ The following graph shows how the control unit signals controls the entire progr
 
 This tells us:
 * Data memory is (00000 to 1FFFF) = 131072 addresses = 2^17 addresses
+  
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/205653093-2482f388-e6ba-4ea2-94c8-8bd36123258c.png">
+
+  
 * Instruction memory is (000 to FFF) = 4096 addresses = 2^12 addresses
+  
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/205653229-e3545dde-71f1-4bd1-a2f0-0d2bee2cd398.png">
 
 
 
