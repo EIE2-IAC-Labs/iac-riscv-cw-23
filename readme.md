@@ -126,7 +126,17 @@ The following graph shows how the control unit signals controls the entire progr
 <p align="center"> <img width="1000" alt="image" src="/image/Sign_extend_table.png" > </p><BR>
   
 ## Data Memory and Trigger Multiplexer ##
-- implement load and store
+To implement this part of the diagram:
+
+<img width="650" alt="image" src="https://user-images.githubusercontent.com/69715492/205657403-f537a965-a0ce-4cee-ad0c-cddad9dfcb57.png">
+
+I created the data memory module:
+  
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/205657566-42f1e839-1761-4426-bae9-ffe70a26ab92.png">
+
+And made the relevant changes to the top-level module:
+  
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/205657959-eff001e3-7c11-482c-92c6-49e8a3371108.png">
 
 ## Miscellaneous Changes ##
 **Changing number of addresses in instruction memory and data memory:**
