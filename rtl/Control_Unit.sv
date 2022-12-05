@@ -151,14 +151,14 @@ always_comb begin
     2'b00: assign ALUctrl = 000;
     2'b01: assign ALUctrl = 001;
     2'b10: casez(funct3)
-           3'b000: if (op == 0110011 and opfunct7 == 2'b11)   assign ALUctrl = 3'b001;          //substract
+           3'b000: if (op == 0110011 and opfunct7 == 2'b11)   assign ALUctrl = 3'b001;          //subtract
                    else  assign ALUctrl = 3'b000;                      // add
            3'b010: assign ALUctrl = 3'b101;                            // set less than
            3'b110: assign ALUctrl = 3'b011;                            // or
            3'b111: assign ALUctrl = 3'b010;                            // and
            3'b001: assign ALUctrl = 3'b100;                            // shift left
            endcase
-    2'b11: assign ALUctrl = 3'b101;                                       // ALUResult = SrcB
+    2'b11: assign ALUctrl = 3'b110;                                       // ALUResult = SrcB
     endcase
 end
 
