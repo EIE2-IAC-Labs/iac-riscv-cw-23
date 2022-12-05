@@ -21,7 +21,7 @@ Looking at the brief and comparing our Lab 4 design with the required project de
 * *Changes in Control Unit*: for implementing JAL, Load and Store
 * *Adding Data Memory and Multiplexer*
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/205308394-d7acb6d3-dbe2-4608-9d8b-682ef67b2c0d.png">
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/69715492/205523883-2f62d04c-383f-4aa7-b777-dd8ce6d690d1.png">
 
 
 # 2. Implementing RV321 Design (For Team Code) #
