@@ -116,10 +116,15 @@ The following graph shows how the control unit signals controls the entire progr
 <p align="center"> <img width="600" height = "550" alt="image" src="/image/load_upper_immediate.jpg" > </p><BR>
 
 
-Main Decoder Table:
-
-Sign Extension Table:
-
+### Main Decoder Table:
+<p align="center"> <img width="1000"  alt="image" src="/image/main_decoder.png" > </p><BR>
+  
+### ALU Decoder Table:
+<p align="center"> <img width="1000"  alt="image" src="/image/ALU_decoder.png" > </p><BR>
+  
+### Sign Extension Table:
+<p align="center"> <img width="1000" alt="image" src="/image/Sign_extend_table.png" > </p><BR>
+  
 ## Data Memory and Trigger Multiplexer ##
 - implement load and store
 
