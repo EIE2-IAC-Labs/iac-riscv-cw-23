@@ -132,3 +132,22 @@ The following graph shows how the control unit signals controls the entire progr
 # 3. Implementing RV321 Design (For Reference Program) #
 
 # 4. Implementing Pipelining #
+## Avoiding Data and Control hazards
+- Inserting NOPs will hopefully overcome data and control hazards
+
+## Insert Control Units for every stage (FDEMW)
+
+## Top level module and testing
+
+# 5. Implementing Caching #
+## Planning
+1 Level cache
+Block size: 4
+2 Sets meeded
+### Miss rate calculations
+2/8 = 25% for each subroutine
+### Temporal Locality
+
+### Spatial Locality
+
+## Implementation

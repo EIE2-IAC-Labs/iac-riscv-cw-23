@@ -20,10 +20,11 @@ int main(int argc, char **argv, char **env) {
  
   // init Vbuddy
   if (vbdOpen()!=1) return(-1);
-  vbdHeader("L4: RISC-V");
+  vbdHeader("PROJECT: RISC-V");
 
   // initialize simulation inputs
   top->clk = 1;
+  top->TRIGGERSEL = 0;
   top->rst = 0;
 
 
@@ -35,6 +36,8 @@ int main(int argc, char **argv, char **env) {
       top->clk = !top->clk;
       top->eval ();
     }
+
+    top->TRIGGERSEL = vbdFlag();
     
     // plot ROM output and print cycle count
     vbdHex(4, (int(top->a0) >> 16) & 0xF);
