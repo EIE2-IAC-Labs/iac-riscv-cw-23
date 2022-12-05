@@ -28,6 +28,8 @@ logic EQ;
 //orange
 logic [DATA_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] PC;
+//dataMemory
+logic [DATA_WIDTH-1:0] ReadData;
 
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
@@ -84,6 +86,14 @@ ALU alu_instance(
     .ALUop2 (ALUop2),
     .ALUResult (ALUout),
     .EQ (EQ)
+);
+
+DataMemory data_memory_instance(
+    .clk (clk),
+    .WE (MemWrite),
+    .A (ALUout),
+    .WD (regOp2),
+    .RD (ReadData)
 );
 
 endmodule
