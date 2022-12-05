@@ -13,7 +13,7 @@ logic [DATA_WIDTH-1:0] dataMemory_array [2**ADDRESS_WIDTH-1:0];
 
 always_ff @ *
     begin
-        RD = dataMemory_array[AD1];
+        RD = dataMemory_array[A];
     end
 
 always_ff @(posedge clk)
