@@ -9,7 +9,7 @@ module Instr_Mem # (
 
 logic [11:0] addr = A[11:0] 
 
-logic [DATA_WIDTH-1:0] array [2**12:0];
+logic [DATA_WIDTH-1:0] array [2**12-1:0];
 
 initial begin
         $display ("Loading Instr_Mem.");
