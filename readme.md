@@ -21,7 +21,7 @@ Looking at the brief and comparing our Lab 4 design with the required project de
 * *Changes in Control Unit*: for implementing JAL, Load and Store
 * *Adding Data Memory and Multiplexer*
 
-<img width="750" alt="image" src="https://user-images.githubusercontent.com/69715492/205523883-2f62d04c-383f-4aa7-b777-dd8ce6d690d1.png">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/205524118-b47edd9a-36bd-4335-912b-f155458627d5.png">
 
 
 # 2. Implementing RV321 Design (For Team Code) #
@@ -42,7 +42,7 @@ Working together, we devised the following machine code:
 
 Understanding value in s10 (affected by TRIGGERSEL):
 
-<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/205523703-791d5a17-3be5-473a-be58-60a182556784.png">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/205524215-d20d5b89-de3a-4d5e-b5aa-3488bca13f44.png">
 
 Visualising the code:
 
