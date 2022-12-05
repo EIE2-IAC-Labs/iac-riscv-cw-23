@@ -9,7 +9,7 @@ module DataMemory #(
     output logic [DATA_WIDTH-1:0] RD
 );
 
-logic [DATA_WIDTH-1:0] dataMemory_array [2**ADDRESS_WIDTH-1:0];
+logic [DATA_WIDTH-1:0] dataMemory_array [2**17-1:0];
 
 always_ff @ *
     begin
