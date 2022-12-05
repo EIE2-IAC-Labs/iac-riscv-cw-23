@@ -48,7 +48,7 @@ Visualising the code:
 
 <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/205523623-83de2227-cbae-41fd-8c02-9a4c03533594.png">
 
-## Changes in ALU ##
+## ALU ##
 
 ## Control Unit ##
 
