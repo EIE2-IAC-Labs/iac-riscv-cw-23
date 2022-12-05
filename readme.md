@@ -128,6 +128,20 @@ The following graph shows how the control unit signals controls the entire progr
 ## Data Memory and Trigger Multiplexer ##
 - implement load and store
 
+## Miscellaneous Changes ##
+**Changing number of addresses in instruction memory and data memory:**
+
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/69715492/205651392-47f099cd-d671-482f-86c7-e90a06c45245.png">
+
+This tells us:
+* Data memory is (00000 to 1FFFF) = 131072 addresses = 2^17 addresses
+* Instruction memory is (000 to FFF) = 4096 addresses = 2^12 addresses
+
+
+
+
+
+
 ## Top-level module checks and Testing ##
 # 3. Implementing RV321 Design (For Reference Program) #
 
