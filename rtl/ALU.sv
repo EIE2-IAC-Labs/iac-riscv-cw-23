@@ -6,7 +6,7 @@ module ALU #(
     input logic [DATA_WIDTH-1:0] ALUop1,
     input logic [DATA_WIDTH-1:0] ALUop2,
     output logic [DATA_WIDTH-1:0] ALUResult,
-    output logic EQ //whether ALUop1 and ALUop2 are equal or not
+    output logic Zero //whether ALUop1 and ALUop2 are equal or not
     //can be either 0 or 1
 );
 
@@ -23,8 +23,8 @@ module ALU #(
         casez(ALUctrl)
         1'b1: assign SUM = ALUop1 + ALUop2;
         1'b0: if (ALUop1 - ALUop2 == {DATA_WIDTH{1'b0}}) assign EQ = 1'b1; 
-              else assign EQ = 1'b0;
-        default: EQ = 1'b0;
+              else assign Zero = 1'b0;
+        default: Zero = 1'b0;
         endcase
 endmodule
 

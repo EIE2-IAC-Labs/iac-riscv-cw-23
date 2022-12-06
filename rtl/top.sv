@@ -54,13 +54,16 @@ Instr_Mem instr_mem_instance (
 );
 
 Control_Unit control_unit_instance(
-    .EQ (EQ),
+    .Zero (Zero),
     .instr (instr),
     .RegWrite (RegWrite),
     .ALUctrl (ALUctrl),
     .ALUsrc (ALUsrc),
     .ImmSrc (ImmSrc),
-    .PCsrc (PCsrc)
+    .PCsrc (PCsrc),
+    .ResultSrc (ResultSrc),
+    .MemWrite(MemWrite),
+    .JUMPRT(JUMPRT)
 );
 
 Sign_extend sign_extend_instance(
