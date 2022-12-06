@@ -3,12 +3,12 @@ module ProgramCounter#(
 )(
     input logic      clk,
     input logic      rst,
-    input logic [WIDTH-1:0]  next_PC,
+    input logic [WIDTH-1:0]  PCNext,
     output logic [WIDTH-1:0]  PC
 );
 
 always_ff @(posedge clk, posedge rst)
-    if(rst) PC <= {WIDTH{1'b0}};
-    else    PC <= next_PC;
+    if(rst) PC <= 32'hBFC00000;
+    else    PC <= PCNext;
 
 endmodule

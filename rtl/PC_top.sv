@@ -10,16 +10,16 @@ module PC_top #(
 
 logic [WIDTH-1:0]  inc_PC;
 logic [WIDTH-1:0]  branch_PC;
-logic [WIDTH-1:0]  next_PC;
+logic [WIDTH-1:0]  PCNext;
 assign inc_PC = PC+4;
 assign branch_PC = PC + ImmOp;
 
-assign next_PC = PCsrc ? branch_PC : inc_PC;
+assign PCNext = PCsrc ? branch_PC : inc_PC;
 
   ProgramCounter ProgramCounter (
     .clk (clk),
     .rst (rst),
-    .next_PC (next_PC),
+    .PCNext (PCNext),
     .PC(PC)
   );
 
