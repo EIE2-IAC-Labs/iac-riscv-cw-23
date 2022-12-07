@@ -20,6 +20,10 @@ logic ALUctrl;
 logic ALUsrc;
 logic ImmSrc;
 logic PCsrc;
+logic MemWrite;
+logic JUMPRT;
+logic MUXJUMP;
+logic Zero;
 //yellow
 logic [DATA_WIDTH-1:0] ALUop1;
 logic [DATA_WIDTH-1:0] ALUop2;
@@ -63,7 +67,8 @@ Control_Unit control_unit_instance(
     .PCsrc (PCsrc),
     .ResultSrc (ResultSrc),
     .MemWrite(MemWrite),
-    .JUMPRT(JUMPRT)
+    .JUMPRT(JUMPRT),
+    .MUXJUMP(MUXJUMP)
 );
 
 Sign_extend sign_extend_instance(
@@ -91,7 +96,7 @@ ALU alu_instance(
     .ALUop1 (ALUop1),
     .ALUop2 (ALUop2),
     .ALUResult (ALUout),
-    .EQ (EQ)
+    .Zero (Zero)
 );
 
 DataMemory data_memory_instance(
