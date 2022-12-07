@@ -3,7 +3,7 @@
 #include "Vtop.h"
 
 #include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 1000
+#define MAX_SIM_CYC 100
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
@@ -24,8 +24,8 @@ int main(int argc, char **argv, char **env) {
 
   // initialize simulation inputs
   top->clk = 1;
-  top->TRIGGERSEL = 0;
-  top->rst = 0;
+  top->TRIGGERSEL = 1;
+  top->rst = 1;
 
 
   // run simulation for MAX_SIM_CYC clock cycles
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **env) {
       top->clk = !top->clk;
       top->eval ();
     }
-
+    top->rst = 0;
     top->TRIGGERSEL = vbdFlag();
     
     // plot ROM output and print cycle count
@@ -50,10 +50,6 @@ int main(int argc, char **argv, char **env) {
    
     vbdBar(top->a0);
     
-    // set up input signals of testbench
-    top->rst = (simcyc < 2);    // assert reset for 1st cycle
-    top->TRIGGERSEL = (simcyc > 2);
-
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 
       exit(0);                // ... exit if finish OR 'q' pressed
