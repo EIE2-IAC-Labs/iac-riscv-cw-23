@@ -49,7 +49,9 @@ PC_top pc_top_instance (
     .rst (rst),
     .ImmOp(ImmOp),
     .PCsrc (PCsrc),
-    .PC (PC)
+    .PC (PC),
+    .JUMPRT(JUMPRT),
+    .Result(Result)
 );
 
 Instr_Mem instr_mem_instance (
