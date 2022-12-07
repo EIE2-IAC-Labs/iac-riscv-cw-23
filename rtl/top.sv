@@ -33,6 +33,7 @@ logic EQ;
 //orange
 logic [DATA_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] PC;
+logic [DATA_WIDTH-1:0] MUXJUMPOutput;
 //dataMemory
 logic [DATA_WIDTH-1:0] ReadData;
 logic [DATA_WIDTH-1:0] TriggerOutput;
@@ -79,13 +80,15 @@ Sign_extend sign_extend_instance(
     .ImmOp (ImmOp)
 );
 
+assign MUXJUMPOutput = MUXJUMP ? PC+4 : Result;
+
 RegFile reg_file_instance(
     .clk (clk),
     .AD1 (rs1),
     .AD2 (rs2),
     .AD3 (rd),
     .WE3 (RegWrite),
-    .WD3 (ALUout),
+    .WD3 (MUXJUMPOutput),
     .RD1 (ALUop1),
     .RD2 (regOp2),
     .a0 (a0)
