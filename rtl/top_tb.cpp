@@ -46,6 +46,15 @@ int main(int argc, char **argv, char **env) {
     vbdHex(1, int(top->a0) & 0xF);
     vbdCycle(simcyc+1);
 
+        // Display toggle neopixel
+    if (top->a0) {
+      vbdBar(lights);
+      lights = lights ^ 0xFF;
+    }
+    // set up input signals of testbench
+    top->rst = (simcyc < 2);    // assert reset for 1st cycle
+    top->TRIGGERSEL = (simcyc > 2);
+
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 
       exit(0);                // ... exit if finish OR 'q' pressed
