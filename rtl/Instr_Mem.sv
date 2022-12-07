@@ -7,7 +7,7 @@ module Instr_Mem # (
     output logic [OUT_WIDTH-1:0] RD
 );
 
-logic [11:0] addr = A[11:0] 
+logic [11:0] addr = A[11:0] ,
 
 logic [DATA_WIDTH-1:0] array [2**12-1:0];
 
