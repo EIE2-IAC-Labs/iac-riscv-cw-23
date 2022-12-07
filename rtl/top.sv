@@ -113,7 +113,7 @@ DataMemory data_memory_instance(
     .RD (ReadData)
 );
 
-assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux
+assign TriggerOutput = TRIGGERSEL ? ALUout : ReadData; //Trigger Mux
 assign Result = ResultSrc ? TriggerOutput : ALUout; //Mux for data memory
 
 
