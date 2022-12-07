@@ -16,6 +16,6 @@ initial begin
         $readmemh("counter.mem", array); 
 end;
 
-assign RD = {array [addr+3], array [addr+2], array [addr+1], array[addr+0]};
+assign RD = {array [addr+0], array [addr+1], array [addr+2], array[addr+3]};
 
 endmodule
