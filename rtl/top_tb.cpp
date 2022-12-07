@@ -47,10 +47,9 @@ int main(int argc, char **argv, char **env) {
     vbdCycle(simcyc+1);
 
         // Display toggle neopixel
-    if (top->a0) {
-      vbdBar(lights);
-      lights = lights ^ 0xFF;
-    }
+   
+    vbdBar(top->a0);
+    
     // set up input signals of testbench
     top->rst = (simcyc < 2);    // assert reset for 1st cycle
     top->TRIGGERSEL = (simcyc > 2);

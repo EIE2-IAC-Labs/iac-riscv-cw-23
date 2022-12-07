@@ -20,13 +20,19 @@ module ALU #(
         //assign EQ = 1'b0;
 
     always_comb 
+        begin
         casez(ALUctrl)
         3'b000: assign ALUResult = ALUop1 + ALUop2;
         3'b001: assign ALUResult = ALUop1 - ALUop2;
-         if (ALUResult == {DATA_WIDTH{1'b0}}) assign Zero = 1'b1; 
-              else assign Zero = 1'b0;
-        default: Zero = 1'b0;
         3'b110: assign ALUResult = ALUop2;
+        default: Zero = 1'b0;
         endcase
+
+        casez(ALUResult)
+        32'b0:  assign Zero = 1'b1; 
+        default: Zero = 1'b0;
+        endcase
+        end
+
 endmodule
 

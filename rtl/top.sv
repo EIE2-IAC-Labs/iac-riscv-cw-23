@@ -24,6 +24,7 @@ logic MemWrite;
 logic JUMPRT;
 logic MUXJUMP;
 logic Zero;
+logic ResultSrc;
 //yellow
 logic [DATA_WIDTH-1:0] ALUop1;
 logic [DATA_WIDTH-1:0] ALUop2;
@@ -77,7 +78,7 @@ Control_Unit control_unit_instance(
 Sign_extend sign_extend_instance(
     .ImmSrc (ImmSrc),
     .instr (instr),
-    .ImmOp (ImmOp)
+    .ImmExt (ImmOp)
 );
 
 assign MUXJUMPOutput = MUXJUMP ? PC+4 : Result;
