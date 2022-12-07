@@ -172,13 +172,16 @@ This tells us:
 
 # 5. Implementing Caching #
 ## Planning
-1 Level cache
+We design our data cache system for spatial locality.
+C = 8 words
 Block size: 4
-2 Sets meeded
+Blocks needed: 2
+To accomodate temporal locality, the current used value will be stored in data cache.
+
 ### Miss rate calculations
 2/8 = 25% for each subroutine
-### Temporal Locality
-
-### Spatial Locality
+Both misses are compulsory misses due to first time fetch.
 
 ## Implementation
+We first check if there is desired cached data in our desired memory address, if so, load cached data into register file.
+If not, we store the current value along with 3 other spatially related values in a set in data cache.
