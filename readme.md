@@ -1,7 +1,13 @@
 # Team 23
-Github repo master: Hanbo
 
-Editor & writeup: Anish
+**Note for examiner**
+* folder rtl contains failed attempt for implementing RV321 for our own machine code
+* folder rtl2 contains successful files for implementing RV321 for our own machine code
+
+
+**Github repo master:** Hanbo
+
+**Editor & writeup:** Anish
 
 # Summary of our approach (needs to be edited at the end) #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
