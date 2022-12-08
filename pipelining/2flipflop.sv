@@ -1,37 +1,44 @@
 module 2flipflop (
+    parameter ADDRESS_WIDTH = 32,
+              DATA_WIDTH = 32
+)(
     input logic         clk,
+    //input control signals
     input logic         RegWriteD,
     input logic         ResultSrcD,
     input logic         MemWriteD,
     input logic         JumpD,
     input logic         BranchD,
-    input logic         ALUContrlD,
+    input logic [2:0]        ALUControlD,
     input logic         ALUSrcD,
-    input logic         RD1,
-    input logic         RD2,
-    input logic         PCD,
-    input logic         RdD,
-    input logic         ImmExtD,
-    input logic         PCPlus4D,
     input logic         MUXJUMPD,
     input logic         JUMPRTD,
     input logic         BranchMUXD,
+    //other inputs
+    input logic [DATA_WIDTH-1:0]        RD1,
+    input logic [DATA_WIDTH-1:0]        RD2,
+    input logic [DATA_WIDTH-1:0]        PCD,
+    input logic [4:0]        RdD,
+    input logic [DATA_WIDTH-1:0]        ImmExtD,
+    input logic [DATA_WIDTH-1:0]        PCPlus4D,
+    //output control signals
     output logic         RegWriteE,
     output logic         ResultSrcE,
     output logic         MemWriteE,
     output logic         JumpE,
     output logic         BranchE,
-    output logic         ALUContrlE,
+    output logic         ALUControlE,
     output logic         ALUSrcE,
-    output logic         RD1E,
-    output logic         RD2E,
-    output logic         PCE,
-    output logic         RdE,
-    output logic         ImmExtE,
-    output logic         PCPlus4E,
     output logic         MUXJUMPE,
     output logic         JUMPRTE,
-    output logic         BranchMUXE     
+    output logic         BranchMUXE,  
+    //other outputs
+    output logic [DATA_WIDTH-1:0]        RD1E,
+    output logic [DATA_WIDTH-1:0]        RD2E,
+    output logic [DATA_WIDTH-1:0]        PCE,
+    output logic [4:0]        RdE,
+    output logic [DATA_WIDTH-1:0]        ImmExtE,
+    output logic [DATA_WIDTH-1:0]        PCPlus4E
 );
 
 always_ff @(posedge clk)
