@@ -170,6 +170,8 @@ While debugging we identified the following issues with our code:
 * For Jump/Branch type instructions the concatenation in the sign-extend module was incorrect
   <img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206418713-da0a2eda-4655-4a1d-8cf1-19fc5d1f5a69.png">
 * We had some inconsistencies with bit widths between the top-level module and the control unit 
+  
+**We have successfully implemeted RV321 with our own program. All the files for this are in folder rtl2**
 
 # 3. Implementing RV321 Design (For Reference Program) #
 
