@@ -12,8 +12,8 @@
 # Summary of our approach (needs to be edited at the end) #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
 2. **Implementing RV321 Design (For our own machine code)**: We then documented the changes we made, each of us contributing to the writeup of the task we completed. 
-3. **Implementing RV321 Design (For Reference Program)**
-4. **Implementing Pipelining**
+3. **Implementing Pipelining**
+4. **Implementing RV321 Design (For Reference Program)**
 
 # 1. Planning Single-Cycle RV321 Design #
 The planning section was done together as a group.
@@ -179,15 +179,20 @@ While debugging we identified the following issues with our code:
   
 **We have successfully implemeted RV321 with our own program. All the files for this are in folder rtl2**
 
-# 3. Implementing RV321 Design (For Reference Program) #
+# 3. Implementing Pipelining #
+## Initial Changes ##
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206428450-1f6a8ad3-4965-43c2-ada9-2ab15996b618.png">
 
-# 4. Implementing Pipelining #
+In order to implement the first flip-flop (connected to instruction memory), we had to change our architecture to no longer have a top-level module for the program counter components. *File PC_top has to be removed.*
+
 ## Avoiding Data and Control hazards
-- Inserting NOPs will hopefully overcome data and control hazards
+
 
 ## Insert Control Units for every stage (FDEMW)
 
 ## Top level module and testing
+
+# 4. Implementing RV321 Design (For Reference Program) #
 
 # 5. Implementing Caching #
 ## Planning
