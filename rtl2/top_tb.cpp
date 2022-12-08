@@ -49,6 +49,7 @@ int main(int argc, char **argv, char **env) {
         // Display toggle neopixel
    
     vbdBar(top->a0);
+    top->rst = vbdFlag();
     
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 

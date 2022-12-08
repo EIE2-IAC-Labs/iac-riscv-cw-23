@@ -18,7 +18,7 @@ logic [6:0]         funct7;
 logic [1:0]         ALUOp;
 logic [1:0]         opfunct7;
 //logic               Branch;
-logic               dummy;
+//logic               dummy;
 
 
 assign op = instr[6:0];
@@ -29,7 +29,17 @@ assign opfunct7 = {op[5],funct7[5]};
 always_comb begin
     casez(op)
 
-    default: assign dummy = 0;
+    default: begin                          //default value
+            assign MUXJUMP = 0;
+            assign JUMPRT = 0;
+            assign PCsrc = 0;
+            assign RegWrite = 0;
+            assign ImmSrc = 3'b000;
+            assign ALUsrc = 0;
+            assign MemWrite = 0;
+            assign ResultSrc = 0;
+            assign ALUOp = 2'b00; 
+    end
 
     7'b0010011: begin                      // Immediate ALU operation
         assign RegWrite = 1;
@@ -95,7 +105,7 @@ always_comb begin
         assign JUMPRT = 0;
         
         casez(funct3)
-            default: assign dummy = 0;
+            default: assign PCsrc = 0;
             3'b000: if (Zero)
                         assign PCsrc = 1;
                     else
