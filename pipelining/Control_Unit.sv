@@ -1,15 +1,19 @@
 module Control_Unit (
-    input logic         Zero,
+    //input logic         Zero,
     input logic  [31:0] instr,
     output logic        RegWrite,
+    output logic        ResultSrc,
+    output logic        MemWrite,
+    output logic        Jump,    
+    output logic        Branch,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
     output logic [2:0]  ImmSrc,
-    output logic        PCsrc,
-    output logic        ResultSrc,
-    output logic        MemWrite,
+    output logic        PCsrc,      
     output logic        MUXJUMP,                // MUXJUMP = 0 so that register write in result. MUXJUMP = 1 so that register write in PC+4
-    output logic        JUMPRT     
+    output logic        JUMPRT,
+    
+     
 );
 
 logic [6:0]         op;
@@ -17,7 +21,6 @@ logic [2:0]         funct3;
 logic [6:0]         funct7;
 logic [1:0]         ALUOp;
 logic [1:0]         opfunct7;
-//logic               Branch;
 logic               dummy;
 
 
@@ -37,10 +40,10 @@ always_comb begin
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 0;
+        assign Branch = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
-        assign PCsrc = 0;
+        //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
 
@@ -50,10 +53,10 @@ always_comb begin
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 1;
-        //assign Branch = 0;
+        assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
-        assign PCsrc = 0;
+        //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
 
@@ -63,10 +66,10 @@ always_comb begin
         assign ALUsrc = 1;
         assign MemWrite = 1;
         assign ResultSrc = 0;
-        //assign Branch = 0;
+        assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
-        assign PCsrc = 0;
+        //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
 
@@ -76,10 +79,10 @@ always_comb begin
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 0;
+        assign Branch = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
-        assign PCsrc = 0;
+        //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
 
@@ -89,21 +92,14 @@ always_comb begin
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 1;
         assign ALUOp = 2'b01;
         assign MUXJUMP = 0;
         assign JUMPRT = 0;
         
         casez(funct3)
             default: assign dummy = 0;
-            3'b000: if (Zero)
-                        assign PCsrc = 1;
-                    else
-                        assign PCsrc = 0;
-            3'b001: if (Zero)
-                        assign PCsrc = 0;
-                    else
-                        assign PCsrc = 1;
+            3'b000: assign Branch = 1;
+            3'b001: assign Branch = 0;
         endcase
     end
 
@@ -113,10 +109,10 @@ always_comb begin
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 1;
+        assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
-        assign PCsrc = 1;
+        //assign PCsrc = 1;
         assign JUMPRT = 1;
     end
 
@@ -126,10 +122,10 @@ always_comb begin
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 1;
+        assign Branch = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
-        assign PCsrc = 1;
+        //assign PCsrc = 1;
         assign JUMPRT = 0;
     end
 
@@ -139,10 +135,10 @@ always_comb begin
         assign ALUsrc = 1;
         assign MemWrite = 0;
         assign ResultSrc = 0;
-        //assign Branch = 1;
+        assign Branch = 0;
         assign ALUOp = 2'b11;
         assign MUXJUMP = 0;
-        assign PCsrc = 0;
+        //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
     endcase
