@@ -183,7 +183,10 @@ While debugging we identified the following issues with our code:
 ## Initial Changes ##
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206428450-1f6a8ad3-4965-43c2-ada9-2ab15996b618.png">
 
-In order to implement the first flip-flop (connected to instruction memory), we had to change our architecture to no longer have a top-level module for the program counter components. *File PC_top has to be removed.*
+In order to implement the first flip-flop (connected to instruction memory), we had to change our architecture to no longer have a top-level module for the program counter components. *File PC_top has to be removed.* Instead we add that code directly to the top level module:
+  
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206432170-0462d4cf-84d3-46ad-8306-8a589c022f17.png">
+
 
 ## Avoiding Data and Control hazards
 
