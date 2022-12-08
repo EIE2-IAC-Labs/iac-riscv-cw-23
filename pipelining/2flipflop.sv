@@ -27,7 +27,7 @@ module 2flipflop (
     output logic         MemWriteE,
     output logic         JumpE,
     output logic         BranchE,
-    output logic         ALUControlE,
+    output logic [2:0]        ALUControlE,
     output logic         ALUSrcE,
     output logic         MUXJUMPE,
     output logic         JUMPRTE,
