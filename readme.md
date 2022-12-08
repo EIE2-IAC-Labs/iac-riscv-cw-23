@@ -69,6 +69,7 @@ Here is the work done to implement the instructions for ALU:
 ## Control Unit ##
 
 *__graph note: X represents don't care.__*
+*__TRIGGER MUX IS NOT USED IN FINAL VERSION__*
 
 ### 1. Implement Immediate type (Op = 7'b0010011)
 R-type instruction should do some ALU operation with rs1 and Sign-extended Immediate and store it into the destination register rd. 
