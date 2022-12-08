@@ -9,10 +9,10 @@ module Control_Unit (
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
     output logic [2:0]  ImmSrc,
-    output logic        PCsrc,      
+    //output logic        PCsrc,      
     output logic        MUXJUMP,                // MUXJUMP = 0 so that register write in result. MUXJUMP = 1 so that register write in PC+4
     output logic        JUMPRT,
-    
+    output logic        BranchMUX               // newMUX for pipeline Branch
      
 );
 
@@ -21,7 +21,7 @@ logic [2:0]         funct3;
 logic [6:0]         funct7;
 logic [1:0]         ALUOp;
 logic [1:0]         opfunct7;
-logic               dummy;
+
 
 
 assign op = instr[6:0];
@@ -32,7 +32,20 @@ assign opfunct7 = {op[5],funct7[5]};
 always_comb begin
     casez(op)
 
-    default: assign dummy = 0;
+    default: begin                          //default value
+            assign MUXJUMP = 0;
+            assign JUMPRT = 0;
+            //assign PCsrc = 0;
+            assign RegWrite = 0;
+            assign ImmSrc = 3'b000;
+            assign ALUsrc = 0;
+            assign MemWrite = 0;
+            assign ResultSrc = 0;
+            assign ALUctrl = 3'b000; 
+            assign Jump = 0;
+            assign Branch = 0;
+            assign BranchMUX = 0;
+    end
 
     7'b0010011: begin                      // Immediate ALU operation
         assign RegWrite = 1;
@@ -41,10 +54,11 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
-        assign JUMPRT = 0;
+        assign JUMPRT = 0;        
     end
 
     7'b0000011: begin                     //  Load
@@ -54,6 +68,7 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 1;
         assign Branch = 0;
+        assign Jump = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
@@ -67,6 +82,7 @@ always_comb begin
         assign MemWrite = 1;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 0;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
@@ -80,6 +96,7 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 0;
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
@@ -92,15 +109,19 @@ always_comb begin
         assign ALUsrc = 0;
         assign MemWrite = 0;
         assign ResultSrc = 0;
+        assign Branch = 1;
+        assign Jump = 0;
         assign ALUOp = 2'b01;
         assign MUXJUMP = 0;
         assign JUMPRT = 0;
         
         casez(funct3)
-            default: assign dummy = 0;
-            3'b000: assign Branch = 1;
-            3'b001: assign Branch = 0;
+            default: assign BranchMUX = 0;
+            3'b000: assign BranchMUX = 1;      // BranchMUX = 1 for beq
+            3'b001: assign BranchMUX = 0;      // BranchMUX = 0 for bne
         endcase
+    
+
     end
 
     7'b1100111: begin                      // jump and link register
@@ -110,6 +131,7 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 1;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
         //assign PCsrc = 1;
@@ -123,6 +145,7 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 1;
         assign ALUOp = 2'b00;
         assign MUXJUMP = 1;
         //assign PCsrc = 1;
@@ -136,12 +159,14 @@ always_comb begin
         assign MemWrite = 0;
         assign ResultSrc = 0;
         assign Branch = 0;
+        assign Jump = 0;
         assign ALUOp = 2'b11;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
         assign JUMPRT = 0;
     end
     endcase
+
 
     casez(ALUOp)
     2'b00: assign ALUctrl = 000;

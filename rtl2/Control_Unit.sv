@@ -38,7 +38,7 @@ always_comb begin
             assign ALUsrc = 0;
             assign MemWrite = 0;
             assign ResultSrc = 0;
-            assign ALUOp = 2'b00; 
+            assign ALUctrl = 3'b000; 
     end
 
     7'b0010011: begin                      // Immediate ALU operation
