@@ -44,16 +44,21 @@ assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
 assign rd = {{11'b0},instr[11:7]};
 
+logic [DATA_WIDTH-1:0]  inc_PC;
+logic [DATA_WIDTH-1:0]  branch_PC;
+logic [DATA_WIDTH-1:0]  PCNext;
+logic [DATA_WIDTH-1:0] ReturnMultiplexerOutput;
+assign inc_PC = PC+4;
+assign branch_PC = PC + ImmOp;
 
+assign ReturnMultiplexerOutput = JUMPRT ? Result : branch_PC;//jump multiplexer
+assign PCNext = PCsrc ? ReturnMultiplexerOutput : inc_PC;
 
-PC_top pc_top_instance (
+ProgramCounter ProgramCounter (
     .clk (clk),
     .rst (rst),
-    .ImmOp(ImmOp),
-    .PCsrc (PCsrc),
-    .PC (PC),
-    .JUMPRT(JUMPRT),
-    .Result(Result)
+    .PCNext (PCNext),
+    .PC(PC)
 );
 
 Instr_Mem instr_mem_instance (
