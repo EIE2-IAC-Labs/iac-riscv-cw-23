@@ -50,11 +50,14 @@ Visualising the code:
 
 **EDIT: having debugged, we now find that adding the Trigger Multiplexer causes issues with our load/store instructions. As we can see from the diagram, when the button has not been pressed, TRIGGERSEL = 0, bypassing the entire data memory. To quickly ensure that our architecture still works when excluding the Trigger, we swapped the connection is the trigger multiplexer and used the following machine code:**
 
+<img width="150" alt="image" src="https://user-images.githubusercontent.com/69715492/206420634-dc60ebeb-9a9a-466a-9123-db63f0dc6190.png">
+
 **FINAL NOTE: All the images of our altered diagram should have the Trigger Multiplexer's connections swapped.** 
 
 ## ALU ##
 
 Here is the work done to implement the instructions for ALU:
+
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206415370-461033bf-37f3-47a6-adad-67aa61d8e2ab.png">
 
 ## Control Unit ##
