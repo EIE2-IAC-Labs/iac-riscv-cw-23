@@ -10,21 +10,12 @@ module ALU #(
     //can be either 0 or 1
 );
 
-
-//if (ALUctrl)
-    //assign SUM = ALUop1 + ALUop2;
-//else
-    //if (ALUop1 - ALUop2 == {DATA_WIDTH{1'b0}})
-        //assign EQ = 1'b1;
-    //else
-        //assign EQ = 1'b0;
-
     always_comb 
         begin
         casez(ALUctrl)
         3'b000: assign ALUResult = ALUop1 + ALUop2;
         3'b001: assign ALUResult = ALUop1 - ALUop2;
-        3'b110: assign ALUResult = ALUop2;
+        3'b110: assign ALUResult = ALUop2; //load upper immediate
         default: Zero = 1'b0;
         endcase
 
