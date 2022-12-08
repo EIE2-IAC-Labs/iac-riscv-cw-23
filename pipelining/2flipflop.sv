@@ -1,4 +1,5 @@
 module 2flipflop (
+    input logic         clk,
     input logic         RegWriteD,
     input logic         ResultSrcD,
     input logic         MemWriteD,
