@@ -48,8 +48,14 @@ Visualising the code:
 
 <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/205523623-83de2227-cbae-41fd-8c02-9a4c03533594.png">
 
+**EDIT: having debugged, we now find that adding the Trigger Multiplexer causes issues with our load/store instructions. As we can see from the diagram, when the button has not been pressed, TRIGGERSEL = 0, bypassing the entire data memory. To quickly ensure that our architecture still works when excluding the Trigger, we swapped the connection is the trigger multiplexer and used the following machine code:**
+
+**FINAL NOTE: All the images of our altered diagram should have the Trigger Multiplexer's connections swapped.** 
+
 ## ALU ##
-## Program Counter ##
+
+Here is the work done to implement the instructions for ALU:
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206415370-461033bf-37f3-47a6-adad-67aa61d8e2ab.png">
 
 ## Control Unit ##
 
@@ -155,11 +161,13 @@ This tells us:
   <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/205653229-e3545dde-71f1-4bd1-a2f0-0d2bee2cd398.png">
 
 
-
-
-
-
 ## Top-level module checks and Testing ##
+While debugging we identified the following issues with our code:
+* Some minor syntax errors
+* For Jump/Branch type instructions the concatenation in the sign-extend module was incorrect
+  <img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206418713-da0a2eda-4655-4a1d-8cf1-19fc5d1f5a69.png">
+* We had some inconsistencies with bit widths between the top-level module and the control unit 
+
 # 3. Implementing RV321 Design (For Reference Program) #
 
 # 4. Implementing Pipelining #
