@@ -189,7 +189,11 @@ While debugging we identified the following issues with our code:
   
   <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206432170-0462d4cf-84d3-46ad-8306-8a589c022f17.png">
 
-* Then we realised there is a disparity between our control signals and the diagram provided. Thus we also changed our control unit.
+* Then we realised there is a disparity between our control signals and the diagram provided. Thus we also changed our control unit. 
+  1. The control unit in single cycle version controls PCsrc directly. However, it is now controlled by both branch and jump logic. This is due to the zero signal cannot feedback to the control unit as they are now excuting asynchronously. Thus, we add two new logic of Branch and Jump.
+  2. To perfrom jump instruction, we use MUXJUMP and JUMPRT in previous version. In this new version, we keep the two control signals and make them go through all flipflops because they are used in the last stage of the machine.
+  3. The diagram provided can only implement branch eqaul. In our new version, we add another control signal called BranchMUX to controls PCsrc signal to be 1 or zero depending on funct3 (beq or bne).   
+  
 * Finally we realised our architecture had the "Return multiplexer", which connects Result to PC Target. With this new pipeplined version...
 
 
