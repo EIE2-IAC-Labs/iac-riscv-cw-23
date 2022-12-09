@@ -217,14 +217,29 @@ For the 4 Flip-Flops, we create four separate modules for each of them. Each hav
   
   <img width="200" alt="image" src="https://user-images.githubusercontent.com/69715492/206701575-b058749d-34ec-44b4-b372-48c508848aa1.png">
 
-* To test we used the following machine code:
-  <img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206701410-7daa3f93-ccdb-4b00-9a74-8296ca523056.png">
+* We tried the following machine code 
   
+  1. ALU and Load/Store
+  
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206738619-4e92fc9a-47fe-40ac-930a-5a266235c98d.png">
+
+  2. Branch
+  
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206738853-230070ad-6233-4939-a6b7-faf08e9aa4d0.png">
+  
+  3. Jumps
+  
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/206739073-56b59c51-0b2b-443e-81c3-980a1b1a43e0.png">
+ 
 **While testing we uncovered the following errors**
 * We had not updated the select lines in the multiplexers to the delayed signals
 * Our machine code had 0x10 immediate when it should have been 0xa
 * Our machine code did not have NOPs
 * We had not updated the inputs to modules like ALU and Data Memory with the new input signals
+* Our original diagram was incorrect. Branch and Jump both require PCTarget, but Branch uses PCTargetE while Jump uses PCTargetW. This caused issues. Thus we changed out diagram to:
+
+  
+And our code worked!
 
 # 4. Implementing RV321 Design (For Reference Program) #
 
