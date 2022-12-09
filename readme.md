@@ -3,7 +3,7 @@
 **Note for examiner**
 * folder rtl contains failed attempt for implementing RV321 for our own machine code
 * folder rtl2 contains successful files for implementing RV321 for our own machine code
-* folder pipelining contains ...
+* folder pipelining contains successful files for pipelining
 
 
 **Github repo master:** Hanbo
