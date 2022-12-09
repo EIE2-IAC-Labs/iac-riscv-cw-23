@@ -1,4 +1,4 @@
-module Fourflipflop (
+module flipflop4 #(
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(
@@ -13,10 +13,10 @@ module Fourflipflop (
     input logic  [DATA_WIDTH-1:0]       ReadData,
     input logic  [4:0]       RdM,
     input logic  [DATA_WIDTH-1:0]       PCTargetM,
-    input logic  [DATA_WIDTH-1:0]       PCPlus4M
+    input logic  [DATA_WIDTH-1:0]       PCPlus4M,
     //output control signals
     output logic        RegWriteW,
-    output logic        ResultSrcW
+    output logic        ResultSrcW,
     output logic        MUXJUMPW,
     output logic        JUMPRTW,
     //other outputs

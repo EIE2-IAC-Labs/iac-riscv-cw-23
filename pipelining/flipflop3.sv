@@ -1,4 +1,4 @@
-module Threeflipflop (
+module flipflop3 #(
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(

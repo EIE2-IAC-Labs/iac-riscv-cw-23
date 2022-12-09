@@ -1,4 +1,4 @@
-module Twoflipflop (
+module flipflop2 #(
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(
