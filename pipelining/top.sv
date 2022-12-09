@@ -174,11 +174,49 @@ Twoflipflop Twoflipflop_instance(
 );
 
 Threeflipflop Threeflipflop_instance(
-
+    .clk(),
+    .ALUOut(),
+    .regOp2(),
+    .RdE(),
+    .PCTargetE(),
+    .PCPlus4E(),
+    .RegWriteE(),
+    .ResultSrcE(),
+    .MemWriteE(),
+    .MUXJUMPE(),
+    .JUMPRTE(),
+    .RegWriteM(),
+    .ResultSrcM(),
+    .MemWriteM(),
+    .MUMJUMPM(),
+    .JUMPRTM(),
+    .ALUResultM(),
+    .WriteDataM(),
+    .RdM(),
+    .PCTargetM(),
+    .PCPlus4M()
 );
 
 Fourflipflop Fourflipflop_instance(
-
+    .clk(),
+    .ALUResultM(),
+    .ReadData(),
+    .RdM(),
+    .PCTargetM(),
+    .PCPlus4M(),
+    .RegWriteM(),
+    .ResultSrcM(),
+    .MUXJUMPM(),
+    .JUMPRTM(),
+    .RegWriteW(),
+    .ResultSrcW(),
+    .MUMJUMPW(),
+    .JUMPRTW(),
+    .ALUResultW(),
+    .ReadDataW(),
+    .RdW(),
+    .PCTargetW(),
+    .PCPlus4W()
 );
 
 endmodule
