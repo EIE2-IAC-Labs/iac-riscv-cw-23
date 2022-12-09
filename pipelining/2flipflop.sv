@@ -1,4 +1,4 @@
-module 2flipflop (
+module Twoflipflop (
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(
@@ -48,7 +48,7 @@ always_ff @(posedge clk)
         MemWriteE   <=  MemWriteD;
         JumpE       <=  JumpD;
         BranchE     <=  BranchD;
-        ALUContrlE  <=  ALUContrlD;
+        ALUControlE  <=  ALUControlD;
         ALUSrcE     <=  ALUSrcD;
         RD1E        <=  RD1;
         RD2E        <=  RD2;

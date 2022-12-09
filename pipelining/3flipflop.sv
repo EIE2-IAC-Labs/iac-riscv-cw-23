@@ -1,4 +1,4 @@
-module 3flipflop (
+module Threeflipflop (
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(
@@ -15,14 +15,12 @@ module 3flipflop (
     input logic         MemWriteE,
     input logic         MUXJUMPE,
     input logic         JUMPRTE,
-    input logic [2:0]        ALUControlD,
     //control signal outputs
     output logic        RegWriteM,
     output logic        ResultSrcM,
     output logic        MemWriteM,
     output logic        MUXJUMPM,
     output logic        JUMPRTM,
-    output logic [2:0]      ALUControlE,
     //remaining outputs
     output logic [DATA_WIDTH-1:0]       ALUResultM,
     output logic [DATA_WIDTH-1:0]       WriteDataM,
@@ -36,6 +34,8 @@ always_ff @(posedge clk)
         RegWriteM <= RegWriteE;
         ResultSrcM <= ResultSrcE;
         MemWriteM <= MemWriteE;
+        MUXJUMPM <= MUXJUMPE;
+        JUMPRTM <= JUMPRTE;
         ALUResultM <= ALUOut;
         WriteDataM <= regOp2;
         RdM <= RdE;

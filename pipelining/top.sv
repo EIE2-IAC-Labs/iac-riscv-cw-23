@@ -40,6 +40,14 @@ logic [DATA_WIDTH-1:0] ReadData;
 logic [DATA_WIDTH-1:0] TriggerOutput;
 logic [DATA_WIDTH-1:0] Result;
 
+//pipelining signals
+//D-Stage
+logic [DATA_WIDTH-1:0] InstrD;
+logic [DATA_WIDTH-1:0] PCD;
+logic [DATA_WIDTH-1:0] PCPlus4D;
+//E-Stage
+//M-Stage
+//W-Stage
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
 assign rd = {{11'b0},instr[11:7]};
@@ -121,5 +129,56 @@ DataMemory data_memory_instance(
 assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux
 assign Result = ResultSrc ? TriggerOutput : ALUout; //Mux for data memory
 
+Oneflipflop Oneflipflop_instance(
+    .clk(clk),
+    .RD(instr),
+    .PC(PC),
+    .inc_PC(inc_PC),
+    .InstrD(InstrD),
+    .PCD(PCD),
+    .PCPlus4D(PCPlus4D)
+);
+
+Twoflipflop Twoflipflop_instance(
+    .clk(),
+    .RegWriteD(),
+    .MemWriteD(),
+    .JumpD(),
+    .BranchD(),
+    .ALUContrlD(),
+    .ALUSrcD(),
+    .MUXJUMPD(),
+    .BranchMUXD(),
+    .RD1(),
+    .RD2(),
+    .PCD(),
+    .RdD(),
+    .ImmExtD(),
+    .PCPlus4D(),
+    .RegWriteE(),
+    .ResultSrcE(),
+    .MemWriteE(),
+    .JumpE(),
+    .BranchE(),
+    .ALUControlE(),
+    .ALUSrcE(),
+    .MUXJUMPE(),
+    .JUMPRTE(),
+    .BranchMUXE(),
+    .RD1E(),
+    .RD2E(),
+    .PCE(),
+    .RdE(),
+    .ImmExtE(),
+    .PCPlus4E()
+);
+
+Threeflipflop Threeflipflop_instance(
+
+);
+
+Fourflipflop Fourflipflop_instance(
+
+);
 
 endmodule

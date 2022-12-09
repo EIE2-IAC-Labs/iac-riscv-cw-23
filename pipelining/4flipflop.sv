@@ -1,4 +1,4 @@
-module 4flipflop (
+module Fourflipflop (
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(

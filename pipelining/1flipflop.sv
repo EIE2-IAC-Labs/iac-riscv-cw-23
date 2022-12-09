@@ -1,4 +1,4 @@
-module 1flipflop (
+module Oneflipflop (
     parameter ADDRESS_WIDTH = 32,
               DATA_WIDTH = 32
 )(
