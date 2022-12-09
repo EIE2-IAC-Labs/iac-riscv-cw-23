@@ -48,6 +48,7 @@ logic [DATA_WIDTH-1:0] PCPlus4D;
 //E-Stage
 //M-Stage
 //W-Stage
+logic [DATA_WIDTH-1:0] RdW;
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
 assign rd = {{11'b0},instr[11:7]};
@@ -100,7 +101,7 @@ RegFile reg_file_instance(
     .clk (clk),
     .AD1 (rs1),
     .AD2 (rs2),
-    .AD3 (rd),
+    .AD3 (RdW),
     .WE3 (RegWrite),
     .WD3 (MUXJUMPOutput),
     .RD1 (ALUop1),
@@ -140,18 +141,20 @@ Oneflipflop Oneflipflop_instance(
 );
 
 Twoflipflop Twoflipflop_instance(
-    .clk(),
-    .RegWriteD(),
-    .MemWriteD(),
-    .JumpD(),
-    .BranchD(),
-    .ALUContrlD(),
-    .ALUSrcD(),
-    .MUXJUMPD(),
-    .BranchMUXD(),
-    .RD1(),
-    .RD2(),
-    .PCD(),
+    .clk(clk),
+    //input control signals
+    .RegWriteD(RegWrite),
+    .MemWriteD(MemWrite),
+    .JumpD(Jump),
+    .BranchD(Branch),
+    .ALUContrlD(ALUctrl),
+    .ALUSrcD(ALUsrc),
+    .MUXJUMPD(MUXJUMP),
+    .BranchMUXD(BranchMUX),
+    //other inputs
+    .RD1(ALUop1),
+    .RD2(regOp2),
+    .PCD(PCD),
     .RdD(),
     .ImmExtD(),
     .PCPlus4D(),
