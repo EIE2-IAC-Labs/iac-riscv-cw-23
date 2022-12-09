@@ -85,9 +85,9 @@ logic [DATA_WIDTH-1:0] PCPlus4W;
 logic [DATA_WIDTH-1:0] ReadDataW;
 logic [DATA_WIDTH-1:0] ALUResultW;
 
-assign rs1 = {{11'b0},instr[19:15]};
-assign rs2 = {{11'b0},instr[24:20]};
-assign rd = {{11'b0},instr[11:7]};
+assign rs1 = {{11'b0}, InstrD[19:15]};
+assign rs2 = {{11'b0}, InstrD[24:20]};
+assign rd = {{11'b0}, InstrD[11:7]};
 
 logic [DATA_WIDTH-1:0]  inc_PC;
 logic [DATA_WIDTH-1:0]  branch_PC;
@@ -146,7 +146,7 @@ RegFile reg_file_instance(
     .a0 (a0)
 );
 
-assign ALUop2 = ALUSrcE ? ImmOp : regOp2;
+assign ALUop2 = ALUSrcE ? ImmExtE : RD2E;
 
 ALU alu_instance(
     .ALUctrl (ALUControlE),
