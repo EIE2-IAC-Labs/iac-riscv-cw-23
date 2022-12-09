@@ -25,6 +25,7 @@ logic JUMPRT;
 logic MUXJUMP;
 logic Zero;
 logic ResultSrc;
+logic BranchMUX;
 //yellow
 logic [DATA_WIDTH-1:0] ALUop1;
 logic [DATA_WIDTH-1:0] ALUop2;
@@ -46,9 +47,42 @@ logic [DATA_WIDTH-1:0] InstrD;
 logic [DATA_WIDTH-1:0] PCD;
 logic [DATA_WIDTH-1:0] PCPlus4D;
 //E-Stage
+logic RegWriteE; //control outputs
+logic ResultSrcE;
+logic MemWriteE;
+logic JumpE;
+logic BranchE;
+logic [2:0] ALUControlE;
+logic ALUSrcE;
+logic MUXJUMPE;
+logic JUMPRTE;
+logic [DATA_WIDTH-1:0] RD1E; //other outputs
+logic [DATA_WIDTH-1:0] RD2E;
+logic [DATA_WIDTH-1:0] PCE;
+logic [DATA_WIDTH-1:0] RdE;
+logic [DATA_WIDTH-1:0] ImmExtE;
+logic [DATA_WIDTH-1:0] PCPlus4E;
 //M-Stage
+logic RegWriteM; //control outputs
+logic ResultSrcM;
+logic MemWriteM;
+logic MUXJUMPM;
+logic JUMPRTM;
+logic [DATA_WIDTH-1:0] ALUResultM; //other outputs
+logic [DATA_WIDTH-1:0] WriteDataM;
+logic [DATA_WIDTH-1:0] RdM;
+logic [DATA_WIDTH-1:0] PCTargetM;
+logic [DATA_WIDTH-1:0] PCPlus4M;
 //W-Stage
-logic [DATA_WIDTH-1:0] RdW;
+logic RegWriteW; //control outputs
+logic ResultSrcW;
+logic MUXJUMPW;
+logic JUMPRTW;
+logic [DATA_WIDTH-1:0] RdW; //other outputs
+logic [DATA_WIDTH-1:0] PCPlus4W;
+logic [DATA_WIDTH-1:0] ReadDataW;
+logic [DATA_WIDTH-1:0] ALUResultW;
+
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
 assign rd = {{11'b0},instr[11:7]};
@@ -86,7 +120,8 @@ Control_Unit control_unit_instance(
     .ResultSrc (ResultSrc),
     .MemWrite(MemWrite),
     .JUMPRT(JUMPRT),
-    .MUXJUMP(MUXJUMP)
+    .MUXJUMP(MUXJUMP),
+    .BranchMUX(BranchMUX)
 );
 
 Sign_extend sign_extend_instance(
@@ -155,71 +190,81 @@ Twoflipflop Twoflipflop_instance(
     .RD1(ALUop1),
     .RD2(regOp2),
     .PCD(PCD),
-    .RdD(),
-    .ImmExtD(),
-    .PCPlus4D(),
-    .RegWriteE(),
-    .ResultSrcE(),
-    .MemWriteE(),
-    .JumpE(),
-    .BranchE(),
-    .ALUControlE(),
-    .ALUSrcE(),
-    .MUXJUMPE(),
-    .JUMPRTE(),
-    .BranchMUXE(),
-    .RD1E(),
-    .RD2E(),
-    .PCE(),
-    .RdE(),
-    .ImmExtE(),
-    .PCPlus4E()
+    .RdD(rd),
+    .ImmExtD(ImmOp),
+    .PCPlus4D(PCPlus4D),
+    //output control signals
+    .RegWriteE(RegWriteE),
+    .ResultSrcE(ResultSrcE),
+    .MemWriteE(MemWriteE),
+    .JumpE(JumpE),
+    .BranchE(BranchE),
+    .ALUControlE(ALUControlE),
+    .ALUSrcE(ALUSrcE),
+    .MUXJUMPE(MUXJUMPE),
+    .JUMPRTE(JUMPRTE),
+    .BranchMUXE(BranchMUXE),
+    //other outputs
+    .RD1E(RD1E),
+    .RD2E(RD2E),
+    .PCE(PCE),
+    .RdE(RdE),
+    .ImmExtE(ImmExtE),
+    .PCPlus4E(PCPlus4E)
 );
 
 Threeflipflop Threeflipflop_instance(
-    .clk(),
-    .ALUOut(),
-    .regOp2(),
-    .RdE(),
-    .PCTargetE(),
-    .PCPlus4E(),
-    .RegWriteE(),
-    .ResultSrcE(),
-    .MemWriteE(),
-    .MUXJUMPE(),
-    .JUMPRTE(),
-    .RegWriteM(),
-    .ResultSrcM(),
-    .MemWriteM(),
-    .MUMJUMPM(),
-    .JUMPRTM(),
-    .ALUResultM(),
-    .WriteDataM(),
-    .RdM(),
-    .PCTargetM(),
-    .PCPlus4M()
+    .clk(clk),
+    //other inputs
+    .ALUOut(ALUOut),
+    .regOp2(regOp2),
+    .RdE(RdE),
+    .PCTargetE(branch_PC),
+    .PCPlus4E(PCPlus4E),
+    //input control signals
+    .RegWriteE(RegWriteE),
+    .ResultSrcE(ResultSrcE),
+    .MemWriteE(MemWriteE),
+    .MUXJUMPE(MUXJUMPE),
+    .JUMPRTE(JUMPRTE),
+    //output control signals
+    .RegWriteM(RegWriteM),
+    .ResultSrcM(ResultSrcM),
+    .MemWriteM(MemWriteM),
+    .MUXJUMPM(MUXJUMPM),
+    .JUMPRTM(JUMPTRM),
+    //other outputs
+    .ALUResultM(ALUResultM),
+    .WriteDataM(WriteDataM),
+    .RdM(RdM),
+    .PCTargetM(PCTargetM),
+    .PCPlus4M(PCPlus4M)
 );
 
 Fourflipflop Fourflipflop_instance(
-    .clk(),
-    .ALUResultM(),
-    .ReadData(),
-    .RdM(),
-    .PCTargetM(),
-    .PCPlus4M(),
+    .clk(clk),
+    //other inputs
+    .ALUResultM(ALUResultM),
+    .ReadData(ReadData),
+    .RdM(RdM),
+    .PCTargetM(PCTargetM),
+    .PCPlus4M(PCPlus4M),
+    //control inputs
     .RegWriteM(),
     .ResultSrcM(),
     .MUXJUMPM(),
     .JUMPRTM(),
-    .RegWriteW(),
-    .ResultSrcW(),
-    .MUMJUMPW(),
-    .JUMPRTW(),
-    .ALUResultW(),
-    .ReadDataW(),
-    .RdW(),
-    .PCTargetW(),
-    .PCPlus4W()
+    //control outputs
+    .RegWriteW(RegWriteW),
+    .ResultSrcW(ResultSrcW),
+    .MUMJUMPW(MUMJUMPW),
+    .JUMPRTW(JUMPRTW),
+    //other outputs
+    .ALUResultW(ALUResultW),
+    .ReadDataW(ReadDataW),
+    .RdW(RdW),
+    .PCTargetW(PCTargetW),
+    .PCPlus4W(PCPlus4W)
 );
 
 endmodule
