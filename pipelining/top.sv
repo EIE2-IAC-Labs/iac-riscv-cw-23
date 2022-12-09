@@ -26,12 +26,13 @@ logic MUXJUMP;
 logic Zero;
 logic ResultSrc;
 logic BranchMUX;
+logic Branch;
+logic Jump;
 //yellow
 logic [DATA_WIDTH-1:0] ALUop1;
 logic [DATA_WIDTH-1:0] ALUop2;
 logic [DATA_WIDTH-1:0] regOp2;
 logic [DATA_WIDTH-1:0] ALUout;
-logic EQ;
 //orange
 logic [DATA_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] PC;
@@ -52,6 +53,7 @@ logic ResultSrcE;
 logic MemWriteE;
 logic JumpE;
 logic BranchE;
+logic BranchMUXE;
 logic [2:0] ALUControlE;
 logic ALUSrcE;
 logic MUXJUMPE;
@@ -110,13 +112,13 @@ Instr_Mem instr_mem_instance (
 );
 
 Control_Unit control_unit_instance(
-    .Zero (Zero),
     .instr (instr),
     .RegWrite (RegWrite),
     .ALUctrl (ALUctrl),
     .ALUsrc (ALUsrc),
     .ImmSrc (ImmSrc),
-    .PCsrc (PCsrc),
+    .Branch(Branch),
+    .Jump(Jump),
     .ResultSrc (ResultSrc),
     .MemWrite(MemWrite),
     .JUMPRT(JUMPRT),
@@ -165,7 +167,7 @@ DataMemory data_memory_instance(
 assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux
 assign Result = ResultSrc ? TriggerOutput : ALUout; //Mux for data memory
 
-Oneflipflop Oneflipflop_instance(
+flipflop1 Oneflipflop_instance(
     .clk(clk),
     .RD(instr),
     .PC(PC),
@@ -175,17 +177,19 @@ Oneflipflop Oneflipflop_instance(
     .PCPlus4D(PCPlus4D)
 );
 
-Twoflipflop Twoflipflop_instance(
+flipflop2 Twoflipflop_instance(
     .clk(clk),
     //input control signals
     .RegWriteD(RegWrite),
     .MemWriteD(MemWrite),
     .JumpD(Jump),
     .BranchD(Branch),
-    .ALUContrlD(ALUctrl),
+    .ALUControlD(ALUctrl),
     .ALUSrcD(ALUsrc),
     .MUXJUMPD(MUXJUMP),
     .BranchMUXD(BranchMUX),
+    .ResultSrcD(ResultSrc),
+    .JUMPRTD(JUMPRT),
     //other inputs
     .RD1(ALUop1),
     .RD2(regOp2),
@@ -213,7 +217,7 @@ Twoflipflop Twoflipflop_instance(
     .PCPlus4E(PCPlus4E)
 );
 
-Threeflipflop Threeflipflop_instance(
+flipflop3 Threeflipflop_instance(
     .clk(clk),
     //other inputs
     .ALUOut(ALUOut),
@@ -241,7 +245,7 @@ Threeflipflop Threeflipflop_instance(
     .PCPlus4M(PCPlus4M)
 );
 
-Fourflipflop Fourflipflop_instance(
+flipflop4 Fourflipflop_instance(
     .clk(clk),
     //other inputs
     .ALUResultM(ALUResultM),
@@ -250,14 +254,14 @@ Fourflipflop Fourflipflop_instance(
     .PCTargetM(PCTargetM),
     .PCPlus4M(PCPlus4M),
     //control inputs
-    .RegWriteM(),
-    .ResultSrcM(),
-    .MUXJUMPM(),
-    .JUMPRTM(),
+    .RegWriteM(RegWriteM),
+    .ResultSrcM(ResultSrcM),
+    .MUXJUMPM(MUXJUMPM),
+    .JUMPRTM(JUMPRTM),
     //control outputs
     .RegWriteW(RegWriteW),
     .ResultSrcW(ResultSrcW),
-    .MUMJUMPW(MUMJUMPW),
+    .MUXJUMPW(MUXJUMPW),
     .JUMPRTW(JUMPRTW),
     //other outputs
     .ALUResultW(ALUResultW),
