@@ -96,7 +96,7 @@ logic [DATA_WIDTH-1:0] ReturnMultiplexerOutput;
 assign inc_PC = PC+4;
 assign branch_PC = PC + ImmOp;
 
-assign ReturnMultiplexerOutput = JUMPRT ? Result : branch_PC;//jump multiplexer
+assign ReturnMultiplexerOutput = JUMPRTW ? Result : branch_PC;//jump multiplexer
 assign PCNext = PCsrc ? ReturnMultiplexerOutput : inc_PC;
 
 ProgramCounter ProgramCounter (
@@ -132,24 +132,24 @@ Sign_extend sign_extend_instance(
     .ImmExt (ImmOp)
 );
 
-assign MUXJUMPOutput = MUXJUMP ? PC+4 : Result;
+assign MUXJUMPOutput = MUXJUMPW ? PCPlus4W : Result;
 
 RegFile reg_file_instance(
     .clk (clk),
     .AD1 (rs1),
     .AD2 (rs2),
     .AD3 (RdW),
-    .WE3 (RegWrite),
+    .WE3 (RegWriteW),
     .WD3 (MUXJUMPOutput),
     .RD1 (ALUop1),
     .RD2 (regOp2),
     .a0 (a0)
 );
 
-assign ALUop2 = ALUsrc ? ImmOp : regOp2;
+assign ALUop2 = ALUSrcE ? ImmOp : regOp2;
 
 ALU alu_instance(
-    .ALUctrl (ALUctrl),
+    .ALUctrl (ALUControlE),
     .ALUop1 (ALUop1),
     .ALUop2 (ALUop2),
     .ALUResult (ALUout),
@@ -158,14 +158,13 @@ ALU alu_instance(
 
 DataMemory data_memory_instance(
     .clk (clk),
-    .WE (MemWrite),
+    .WE (MemWriteM),
     .A (ALUout),
     .WD (regOp2),
     .RD (ReadData)
 );
 
-assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux
-assign Result = ResultSrc ? TriggerOutput : ALUout; //Mux for data memory
+assign Result = ResultSrcW ?  ReadDataW: ALUResultW; //Mux for data memory
 
 flipflop1 Oneflipflop_instance(
     .clk(clk),
@@ -220,7 +219,7 @@ flipflop2 Twoflipflop_instance(
 flipflop3 Threeflipflop_instance(
     .clk(clk),
     //other inputs
-    .ALUOut(ALUOut),
+    .ALUOut(ALUout),
     .regOp2(regOp2),
     .RdE(RdE),
     .PCTargetE(branch_PC),
@@ -270,5 +269,7 @@ flipflop4 Fourflipflop_instance(
     .PCTargetW(PCTargetW),
     .PCPlus4W(PCPlus4W)
 );
+
+assign PCsrc = BranchMUXE ? ((Zero && BranchE) || JumpE) : ((!Zero && BranchE) || JumpE);
 
 endmodule
