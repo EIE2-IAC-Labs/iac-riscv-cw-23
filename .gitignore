@@ -2,3 +2,5 @@
 .vcd
 obj_dir/
 pipelining/vbuddy.cfg
+*.vcd
+*.cfg

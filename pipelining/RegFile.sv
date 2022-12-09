@@ -24,7 +24,7 @@ always_ff @ *
         RD2 = regfile_array[AD2];
     end
 
-always_ff @(posedge clk)
+always_ff @(negedge clk)
     begin
         if(WE3 == 1'b1)
             regfile_array[AD3] <= WD3;
