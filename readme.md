@@ -224,6 +224,7 @@ For the 4 Flip-Flops, we create four separate modules for each of them. Each hav
 * We had not updated the select lines in the multiplexers to the delayed signals
 * Our machine code had 0x10 immediate when it should have been 0xa
 * Our machine code did not have NOPs
+* We had not updated the inputs to modules like ALU and Data Memory with the new input signals
 
 # 4. Implementing RV321 Design (For Reference Program) #
 
