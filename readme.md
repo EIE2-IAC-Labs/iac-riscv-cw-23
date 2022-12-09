@@ -192,12 +192,19 @@ While debugging we identified the following issues with our code:
 * Then we realised there is a disparity between our control signals and the diagram provided. Thus we also changed our control unit. 
   1. The control unit in single cycle version controls PCsrc directly. However, it is now controlled by both branch and jump logic. This is due to the zero signal cannot feedback to the control unit as they are now excuting asynchronously. Thus, we add two new logic of Branch and Jump.
   2. To perfrom jump instruction, we use MUXJUMP and JUMPRT in previous version. In this new version, we keep the two control signals and make them go through all flipflops because they are used in the last stage of the machine.
-  3. The diagram provided can only implement branch eqaul. In our new version, we add another control signal called BranchMUX to controls PCsrc signal to be 1 or zero depending on funct3 (beq or bne).   
+  3. The diagram provided can only implement branch eqaul. In our new version, we add another control signal called BranchMUX to controls PCsrc signal to be 1 or zero depending on funct3 (beq or bne).  
+  
+  ![b85f91011e03a511967e1c536b2daa7](https://user-images.githubusercontent.com/106196514/206676978-5aad2ac0-0ada-4c98-a711-bfdd100c435b.png)
   
 * Finally we realised our architecture had the "Return multiplexer", which connects Result to PC Target. With this new pipeplined version...
 
+![42e267fb5e69e86641af70524dd49bf](https://user-images.githubusercontent.com/106196514/206676895-8ceea31e-684d-4ab0-a522-2a7c7e5b36cf.jpg)
 
 ## Adding the 4 Flip-Flops
+For the 4 Flip-Flops, we create four separate modules for each of them. Each have a bunch of inputs and outputs following the architecture. Then, there is a always_ff @(posedge clk) that upadtes output with input at positive clock edge. A demonstration of one of the flip-flop is given below.
+
+![image](https://user-images.githubusercontent.com/106196514/206676751-a73d6ded-cb0a-4ee7-89ad-8d10b003afce.png)
+
 
 ## Top level module and testing
 
