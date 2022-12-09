@@ -70,6 +70,7 @@ logic ResultSrcM;
 logic MemWriteM;
 logic MUXJUMPM;
 logic JUMPRTM;
+logic JumpM;
 logic [DATA_WIDTH-1:0] ALUResultM; //other outputs
 logic [DATA_WIDTH-1:0] WriteDataM;
 logic [DATA_WIDTH-1:0] RdM;
@@ -80,10 +81,13 @@ logic RegWriteW; //control outputs
 logic ResultSrcW;
 logic MUXJUMPW;
 logic JUMPRTW;
+logic JumpW;
 logic [DATA_WIDTH-1:0] RdW; //other outputs
 logic [DATA_WIDTH-1:0] PCPlus4W;
 logic [DATA_WIDTH-1:0] ReadDataW;
 logic [DATA_WIDTH-1:0] ALUResultW;
+logic [DATA_WIDTH-1:0] PCTargetW;
+logic [DATA_WIDTH-1:0] PCE2;
 
 assign rs1 = {{11'b0}, InstrD[19:15]};
 assign rs2 = {{11'b0}, InstrD[24:20]};
@@ -94,10 +98,11 @@ logic [DATA_WIDTH-1:0]  branch_PC;
 logic [DATA_WIDTH-1:0]  PCNext;
 logic [DATA_WIDTH-1:0] ReturnMultiplexerOutput;
 assign inc_PC = PC+4;
-assign branch_PC = PCE + ImmExtE;
+assign branch_PC = PCE2 + ImmExtE;
 
-assign ReturnMultiplexerOutput = JUMPRTW ? Result : branch_PC;//jump multiplexer
-assign PCNext = PCsrc ? ReturnMultiplexerOutput : inc_PC;
+assign PCE2 = JUMPRTE ? RD1E : PCE;
+//assign ReturnMultiplexerOutput = JUMPRTW ? Result : PCTargetW;  //jump multiplexer
+assign PCNext = PCsrc ? branch_PC : inc_PC;
 
 ProgramCounter ProgramCounter (
     .clk (clk),
@@ -230,12 +235,14 @@ flipflop3 Threeflipflop_instance(
     .MemWriteE(MemWriteE),
     .MUXJUMPE(MUXJUMPE),
     .JUMPRTE(JUMPRTE),
+    .JumpE(JumpE),
     //output control signals
     .RegWriteM(RegWriteM),
     .ResultSrcM(ResultSrcM),
     .MemWriteM(MemWriteM),
     .MUXJUMPM(MUXJUMPM),
     .JUMPRTM(JUMPTRM),
+    .JumpM(JumpM),
     //other outputs
     .ALUResultM(ALUResultM),
     .WriteDataM(WriteDataM),
@@ -257,11 +264,13 @@ flipflop4 Fourflipflop_instance(
     .ResultSrcM(ResultSrcM),
     .MUXJUMPM(MUXJUMPM),
     .JUMPRTM(JUMPRTM),
+    .JumpM(JumpM),
     //control outputs
     .RegWriteW(RegWriteW),
     .ResultSrcW(ResultSrcW),
     .MUXJUMPW(MUXJUMPW),
     .JUMPRTW(JUMPRTW),
+    .JumpW(JumpW),
     //other outputs
     .ALUResultW(ALUResultW),
     .ReadDataW(ReadDataW),

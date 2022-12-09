@@ -15,7 +15,9 @@ module flipflop3 #(
     input logic         MemWriteE,
     input logic         MUXJUMPE,
     input logic         JUMPRTE,
+    input logic         JumpE,
     //control signal outputs
+    output logic        JumpM,
     output logic        RegWriteM,
     output logic        ResultSrcM,
     output logic        MemWriteM,
@@ -36,6 +38,7 @@ always_ff @(posedge clk)
         MemWriteM <= MemWriteE;
         MUXJUMPM <= MUXJUMPE;
         JUMPRTM <= JUMPRTE;
+        JumpM <= JumpE;
         ALUResultM <= ALUOut;
         WriteDataM <= regOp2;
         RdM <= RdE;
