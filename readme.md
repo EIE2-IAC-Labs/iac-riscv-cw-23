@@ -13,7 +13,7 @@
 # Summary of our approach (needs to be edited at the end) #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
 2. **Implementing RV321 Design (For our own machine code)**: We then documented the changes we made, each of us contributing to the writeup of the task we completed. 
-3. **Implementing Pipelining**
+3. **Implementing Pipelining**: Made initial changes (and planned diagram), added 4 flip-flops, debugged and tested for our own machine code.
 4. **Implementing RV321 Design (For Reference Program)**
 
 # 1. Planning Single-Cycle RV321 Design #
@@ -197,17 +197,33 @@ While debugging we identified the following issues with our code:
   
   ![b85f91011e03a511967e1c536b2daa7](https://user-images.githubusercontent.com/106196514/206676978-5aad2ac0-0ada-4c98-a711-bfdd100c435b.png)
   
-* Finally we realised our architecture had the "Return multiplexer", which connects Result to PC Target. With this new pipeplined version...
+* Finally we realised our architecture had the "Return multiplexer", which connects Result to PC Target. With this new pipelined version, we realised PCTarget needs to be extended through two flip-flops to get PCTargetW.
+* We settled on this diagram, to implement pipelining:
 
-![42e267fb5e69e86641af70524dd49bf](https://user-images.githubusercontent.com/106196514/206676895-8ceea31e-684d-4ab0-a522-2a7c7e5b36cf.jpg)
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206700038-34f7117a-52e2-4777-9af3-36a46d27cc94.png">
 
-## Adding the 4 Flip-Flops
+## Adding the 4 Flip-Flops ##
 For the 4 Flip-Flops, we create four separate modules for each of them. Each have a bunch of inputs and outputs following the architecture. Then, there is a always_ff @(posedge clk) that upadtes output with input at positive clock edge. A demonstration of one of the flip-flop is given below.
 
-![image](https://user-images.githubusercontent.com/106196514/206676751-a73d6ded-cb0a-4ee7-89ad-8d10b003afce.png)
+<img width="200" alt="image" src="https://user-images.githubusercontent.com/69715492/206700108-054e0e57-f527-499f-aedc-7b31bd14ce71.png">
 
+## Top level module and Testing ##
+**To make the top-level**
+* We added all the new internal signals, for example:
+  
+  <img width="200" alt="image" src="https://user-images.githubusercontent.com/69715492/206701511-30b1448f-be32-42cf-a699-924df9f05c04.png">
 
-## Top level module and testing
+* We also added the new modules and matched them with the relevant signals, for example:
+  
+  <img width="200" alt="image" src="https://user-images.githubusercontent.com/69715492/206701575-b058749d-34ec-44b4-b372-48c508848aa1.png">
+
+* To test we used the following machine code:
+  <img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206701410-7daa3f93-ccdb-4b00-9a74-8296ca523056.png">
+  
+**While testing we uncovered the following errors**
+* We had not updated the select lines in the multiplexers to the delayed signals
+* Our machine code had 0x10 immediate when it should have been 0xa
+* Our machine code did not have NOPs
 
 # 4. Implementing RV321 Design (For Reference Program) #
 
