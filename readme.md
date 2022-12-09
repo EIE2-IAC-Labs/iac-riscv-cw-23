@@ -238,7 +238,8 @@ For the 4 Flip-Flops, we create four separate modules for each of them. Each hav
 * We had not updated the inputs to modules like ALU and Data Memory with the new input signals
 * Our original diagram was incorrect. Branch and Jump both require PCTarget, but Branch uses PCTargetE while Jump uses PCTargetW. This caused issues. Thus we changed out diagram to:
 
-  
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206745726-cdce1e0c-fec0-4991-b468-54b1dde92782.png">
+
 And our code worked!
 
 # 4. Implementing RV321 Design (For Reference Program) #
