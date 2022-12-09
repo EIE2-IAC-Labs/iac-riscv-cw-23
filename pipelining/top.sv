@@ -94,7 +94,7 @@ logic [DATA_WIDTH-1:0]  branch_PC;
 logic [DATA_WIDTH-1:0]  PCNext;
 logic [DATA_WIDTH-1:0] ReturnMultiplexerOutput;
 assign inc_PC = PC+4;
-assign branch_PC = PC + ImmOp;
+assign branch_PC = PCE + ImmExtE;
 
 assign ReturnMultiplexerOutput = JUMPRTW ? Result : branch_PC;//jump multiplexer
 assign PCNext = PCsrc ? ReturnMultiplexerOutput : inc_PC;
@@ -112,7 +112,7 @@ Instr_Mem instr_mem_instance (
 );
 
 Control_Unit control_unit_instance(
-    .instr (instr),
+    .instr (InstrD),
     .RegWrite (RegWrite),
     .ALUctrl (ALUctrl),
     .ALUsrc (ALUsrc),
@@ -128,7 +128,7 @@ Control_Unit control_unit_instance(
 
 Sign_extend sign_extend_instance(
     .ImmSrc (ImmSrc),
-    .instr (instr),
+    .instr (InstrD),
     .ImmExt (ImmOp)
 );
 
@@ -150,7 +150,7 @@ assign ALUop2 = ALUSrcE ? ImmExtE : RD2E;
 
 ALU alu_instance(
     .ALUctrl (ALUControlE),
-    .ALUop1 (ALUop1),
+    .ALUop1 (RD1E),
     .ALUop2 (ALUop2),
     .ALUResult (ALUout),
     .Zero (Zero)
@@ -159,8 +159,8 @@ ALU alu_instance(
 DataMemory data_memory_instance(
     .clk (clk),
     .WE (MemWriteM),
-    .A (ALUout),
-    .WD (regOp2),
+    .A (ALUResultM),
+    .WD (WriteDataM),
     .RD (ReadData)
 );
 
@@ -220,7 +220,7 @@ flipflop3 Threeflipflop_instance(
     .clk(clk),
     //other inputs
     .ALUOut(ALUout),
-    .regOp2(regOp2),
+    .regOp2(RD2E),
     .RdE(RdE),
     .PCTargetE(branch_PC),
     .PCPlus4E(PCPlus4E),
