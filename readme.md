@@ -180,7 +180,7 @@ While debugging we identified the following issues with our code:
   <img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206418713-da0a2eda-4655-4a1d-8cf1-19fc5d1f5a69.png">
 * We had some inconsistencies with bit widths between the top-level module and the control unit 
   
-**We have successfully implemeted RV321 with our own program. All the files for this are in folder rtl2**
+**We have successfully implemented RV321 with our own program. All the files for this are in folder rtl2**
 
 # 3. Implementing Pipelining #
 ## Initial Changes ##
