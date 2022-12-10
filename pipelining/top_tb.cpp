@@ -3,7 +3,7 @@
 #include "Vtop.h"
 
 #include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 300
+#define MAX_SIM_CYC 500
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
@@ -49,6 +49,7 @@ int main(int argc, char **argv, char **env) {
         // Display toggle neopixel
    
     vbdBar(top->a0);
+    top->rst = vbdFlag();
     
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 
