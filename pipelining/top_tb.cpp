@@ -3,7 +3,7 @@
 #include "Vtop.h"
 
 #include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 500
+#define MAX_SIM_CYC 1000
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
