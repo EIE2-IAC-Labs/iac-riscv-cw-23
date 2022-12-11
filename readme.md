@@ -1,11 +1,11 @@
 # Team 23
 
 **Note for examiner**
-* folder rtl contains failed attempt for implementing RV321 for our own machine code
-* folder rtl2 contains successful files for implementing RV321 for our own machine code
-* folder pipelining contains successful files for pipelining
+* folder *rtl* contains failed attempt for implementing RV321 for our own machine code
+* folder *rtl2* contains successful files for implementing RV321 for our own machine code
+* folder *pipelining* contains successful files for pipelining
 
-Assembly code for f1 lights can be found in the test folder.
+Assembly code for f1 lights can be found in the *test* folder.
 
 
 **Github repo master:** Hanbo
