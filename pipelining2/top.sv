@@ -47,6 +47,7 @@ logic [DATA_WIDTH-1:0] Result;
 logic [DATA_WIDTH-1:0] InstrD;
 logic [DATA_WIDTH-1:0] PCD;
 logic [DATA_WIDTH-1:0] PCPlus4D;
+logic addr_modeD;
 //E-Stage
 logic RegWriteE; //control outputs
 logic ResultSrcE;
@@ -58,6 +59,7 @@ logic [2:0] ALUControlE;
 logic ALUSrcE;
 logic MUXJUMPE;
 logic JUMPRTE;
+logic addr_modeE;
 logic [DATA_WIDTH-1:0] RD1E; //other outputs
 logic [DATA_WIDTH-1:0] RD2E;
 logic [DATA_WIDTH-1:0] PCE;
@@ -71,6 +73,7 @@ logic MemWriteM;
 logic MUXJUMPM;
 logic JUMPRTM;
 logic JumpM;
+logic addr_modeM;
 logic [DATA_WIDTH-1:0] ALUResultM; //other outputs
 logic [DATA_WIDTH-1:0] WriteDataM;
 logic [DATA_WIDTH-1:0] RdM;
@@ -128,7 +131,8 @@ Control_Unit control_unit_instance(
     .MemWrite(MemWrite),
     .JUMPRT(JUMPRT),
     .MUXJUMP(MUXJUMP),
-    .BranchMUX(BranchMUX)
+    .BranchMUX(BranchMUX),
+    .addr_mode(addr_modeD)
 );
 
 Sign_extend sign_extend_instance(
@@ -166,7 +170,8 @@ DataMemory data_memory_instance(
     .WE (MemWriteM),
     .A (ALUResultM),
     .WD (WriteDataM),
-    .RD (ReadData)
+    .RD (ReadData),
+    .addr_modeM(addr_modeM)
 );
 
 assign Result = ResultSrcW ?  ReadDataW: ALUResultW; //Mux for data memory
@@ -201,6 +206,7 @@ flipflop2 Twoflipflop_instance(
     .RdD(rd),
     .ImmExtD(ImmOp),
     .PCPlus4D(PCPlus4D),
+    .addr_modeD(addr_modeD),
     //output control signals
     .RegWriteE(RegWriteE),
     .ResultSrcE(ResultSrcE),
@@ -218,7 +224,8 @@ flipflop2 Twoflipflop_instance(
     .PCE(PCE),
     .RdE(RdE),
     .ImmExtE(ImmExtE),
-    .PCPlus4E(PCPlus4E)
+    .PCPlus4E(PCPlus4E),
+    .addr_modeE(addr_modeE)
 );
 
 flipflop3 Threeflipflop_instance(
@@ -236,6 +243,7 @@ flipflop3 Threeflipflop_instance(
     .MUXJUMPE(MUXJUMPE),
     .JUMPRTE(JUMPRTE),
     .JumpE(JumpE),
+    .addr_modeE(addr_modeE),
     //output control signals
     .RegWriteM(RegWriteM),
     .ResultSrcM(ResultSrcM),
@@ -248,7 +256,8 @@ flipflop3 Threeflipflop_instance(
     .WriteDataM(WriteDataM),
     .RdM(RdM),
     .PCTargetM(PCTargetM),
-    .PCPlus4M(PCPlus4M)
+    .PCPlus4M(PCPlus4M),
+    .addr_modeM(addr_modeM)
 );
 
 flipflop4 Fourflipflop_instance(

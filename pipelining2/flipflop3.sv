@@ -16,6 +16,7 @@ module flipflop3 #(
     input logic         MUXJUMPE,
     input logic         JUMPRTE,
     input logic         JumpE,
+    input logic         addr_modeE,
     //control signal outputs
     output logic        JumpM,
     output logic        RegWriteM,
@@ -23,6 +24,7 @@ module flipflop3 #(
     output logic        MemWriteM,
     output logic        MUXJUMPM,
     output logic        JUMPRTM,
+    output logic        addr_modeM,
     //remaining outputs
     output logic [DATA_WIDTH-1:0]       ALUResultM,
     output logic [DATA_WIDTH-1:0]       WriteDataM,
@@ -44,5 +46,6 @@ always_ff @(posedge clk)
         RdM <= RdE;
         PCTargetM <= PCTargetE;
         PCPlus4M <= PCPlus4E;
+        addr_modeM <= addr_modeE;
     end
 endmodule

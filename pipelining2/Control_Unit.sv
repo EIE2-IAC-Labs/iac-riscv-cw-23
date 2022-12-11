@@ -12,7 +12,8 @@ module Control_Unit (
     //output logic        PCsrc,      
     output logic        MUXJUMP,                // MUXJUMP = 0 so that register write in result. MUXJUMP = 1 so that register write in PC+4
     output logic        JUMPRT,
-    output logic        BranchMUX               // newMUX for pipeline Branch
+    output logic        BranchMUX,               // newMUX for pipeline Branch
+    output logic        addr_mode
      
 );
 
@@ -45,6 +46,7 @@ always_comb begin
             assign Jump = 0;
             assign Branch = 0;
             assign BranchMUX = 0;
+            assign addr_mode = 0;
     end
 
     7'b0010011: begin                      // Immediate ALU operation
@@ -58,7 +60,8 @@ always_comb begin
         assign ALUOp = 2'b10;
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
-        assign JUMPRT = 0;        
+        assign JUMPRT = 0;   
+        assign addr_mode = 0;     
     end
 
     7'b0000011: begin                     //  Load
@@ -73,6 +76,12 @@ always_comb begin
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
         assign JUMPRT = 0;
+
+        casez(funct3) //specifies whether it is byte or word load
+            default: assign addr_mode = 0;
+            3'b100: assign addr_mode = 1;
+            3'b010: assign addr_mode = 0;
+        endcase
     end
 
     7'b0100011: begin                     // store
@@ -87,6 +96,12 @@ always_comb begin
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
         assign JUMPRT = 0;
+
+        casez(funct3) //specifies whether it is byte or word store
+            default: assign addr_mode = 0;
+            3'b000: assign addr_mode = 1;
+            3'b010: assign addr_mode = 0;
+        endcase
     end
 
     7'b0110011: begin                     // R type
@@ -101,6 +116,7 @@ always_comb begin
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
         assign JUMPRT = 0;
+        assign addr_mode = 0;
     end
 
     7'b1100011: begin                      // Branch
@@ -114,6 +130,7 @@ always_comb begin
         assign ALUOp = 2'b01;
         assign MUXJUMP = 0;
         assign JUMPRT = 0;
+        assign addr_mode = 0;
         
         casez(funct3)
             default: assign BranchMUX = 0;
@@ -136,6 +153,7 @@ always_comb begin
         assign MUXJUMP = 1;
         //assign PCsrc = 1;
         assign JUMPRT = 1;
+        assign addr_mode = 0;
     end
 
     7'b1101111: begin                      // jump and link
@@ -150,6 +168,7 @@ always_comb begin
         assign MUXJUMP = 1;
         //assign PCsrc = 1;
         assign JUMPRT = 0;
+        assign addr_mode = 0;
     end
 
     7'b0110111: begin                      // load upper immediate
@@ -164,6 +183,7 @@ always_comb begin
         assign MUXJUMP = 0;
         //assign PCsrc = 0;
         assign JUMPRT = 0;
+        assign addr_mode = 0;
     end
     endcase
 

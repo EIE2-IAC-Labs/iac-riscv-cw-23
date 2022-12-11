@@ -14,13 +14,14 @@ module flipflop2 #(
     input logic         MUXJUMPD,
     input logic         JUMPRTD,
     input logic         BranchMUXD,
+    input logic         addr_modeD,
     //other inputs
     input logic [DATA_WIDTH-1:0]        RD1,
     input logic [DATA_WIDTH-1:0]        RD2,
     input logic [DATA_WIDTH-1:0]        PCD,
     input logic [4:0]        RdD,
     input logic [DATA_WIDTH-1:0]        ImmExtD,
-    input logic [DATA_WIDTH-1:0]        PCPlus4D,
+    input logic [DATA_WIDTH-1:0]        PCPlus4D,                       
     //output control signals
     output logic         RegWriteE,
     output logic         ResultSrcE,
@@ -32,6 +33,7 @@ module flipflop2 #(
     output logic         MUXJUMPE,
     output logic         JUMPRTE,
     output logic         BranchMUXE,  
+    output logic         addr_modeE,
     //other outputs
     output logic [DATA_WIDTH-1:0]        RD1E,
     output logic [DATA_WIDTH-1:0]        RD2E,
@@ -58,7 +60,8 @@ always_ff @(posedge clk)
         PCPlus4E    <=  PCPlus4D;
         MUXJUMPE    <=  MUXJUMPD;
         JUMPRTE     <=  JUMPRTD;
-        BranchMUXE  <=  BranchMUXD;        
+        BranchMUXE  <=  BranchMUXD;     
+        addr_modeE  <=  addr_modeD;  
     end
 
 
