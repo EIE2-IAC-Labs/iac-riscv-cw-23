@@ -13,12 +13,18 @@ module DataMemory #(
 
 logic [STORE_WIDTH-1:0] dataMemory_array [2**17-1:0];
 
+initial begin
+        $display ("Loading DataMemory.");
+        $readmemh("sine.mem", dataMemory_array, 20'h10000); 
+end
+
+
 always_ff @ * //load
     begin
         if (addr_mode) //for byte addressing
             RD = {24'b0, dataMemory_array[A]};
         else //for word addressing 
-            RD = {dataMemory_array[A+3], dataMemory_array[A+2], dataMemory_array[A+1], dataMemory_array[A]}
+            RD = {dataMemory_array[A+3], dataMemory_array[A+2], dataMemory_array[A+1], dataMemory_array[A]};
     end
 
 always_ff @(posedge clk) //store
