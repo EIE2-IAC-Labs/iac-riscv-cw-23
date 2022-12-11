@@ -247,7 +247,7 @@ And our code worked!
   
 # 5. Implementing Pipelining (For Reference Program) #
 
-# 6. Caching #
+# 6. Caching for F1 #
 ## Planning
 We design our data cache system for spatial locality.
 C = 8 words
@@ -262,3 +262,11 @@ Both misses are compulsory misses due to first time fetch.
 ## Implementation
 We first check if there is desired cached data in our desired memory address, if so, load cached data into register file.
 If not, we store the current value along with 3 other spatially related values in a set in data cache.
+
+## 7. Caching for Reference Program #
+
+To implement data caching in SystemVerilog, We would first need to design the cache memory itself. This would involve deciding on the number of sets and the number of blocks in each set, as well as the size of each block in terms of words. We chose to use direct-mapping with 1 block per set, where the block size is 4 and there are 4 sets. In total it would store 16 words.
+
+Next, I would need to implement the logic for storing and retrieving data from the cache. To store data in the cache, I would first need to determine which set and block the data should be stored in, based on the memory address of the data. If the desired set and block are currently occupied, I would need to implement a replacement policy to decide which data to evict from the cache in order to make room for the new data. Once the data has been stored in the cache, the corresponding memory address would also need to be updated in the cache's tag array to keep track of which data is currently stored in the cache.
+
+To retrieve data from the cache, I would need to use the memory address of the data to determine which set and block the data should be in. If the data is not found in the cache, a cache miss would occur, and the data would need to be fetched from main memory and stored in the cache. If the data is found in the cache, a cache hit would occur, and the data can be quickly retrieved from the cache.
