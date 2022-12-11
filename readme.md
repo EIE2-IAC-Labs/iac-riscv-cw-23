@@ -244,8 +244,42 @@ For the 4 Flip-Flops, we create four separate modules for each of them. Each hav
 And our code worked!
 
 # 4. Implementing RV321 Design (For Reference Program) #
+
+To implement the reference program, the only new instruction we need to be able to implement is load byte unsigned (LBU) and store byte (SB). 
+
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/206923628-b63dc3c4-170f-4a03-a761-8cad399641be.png">
+
+To do so we needed to make changes to our data memory. We needed to:
+* Add a new control signal which determines whether the instruction requires word or byte addressing
+* Change the widths stored in each Data Memory element from 32 to 8 bits. Therefore, 4 addresses make up one 32-bit word.
+
+**Implementation of Byte Addressing in Data Memory**
+* We made changes in our control unit to identify which address mode the load/store is in (example for load):
+
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/206923772-3266294c-64ed-4829-8c95-60d1d5f246b4.png">
   
+* We also added addr_mode to data memory and top-level module
+* We then changed our DataMemory.sv module to implement byte addressing:
+
+  <img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/206923842-42955c18-0440-4fca-a266-cddaa78a41ca.png">
+  
+* We also pre-loaded Data Memory with data_array.
+
+  <img width="300" alt="image" src="https://user-images.githubusercontent.com/69715492/206923914-06f18494-34cf-47e8-b833-4452b6068dc9.png">
+
+* Testing with the following machine code worked successfully. 1F was outputted in the VBuddy display
+
+  <img width="200" alt="image" src="https://user-images.githubusercontent.com/69715492/206923961-fe8c1e24-d2e4-4c2c-bd29-3d50b51941f8.png">
+
+Our final diagram:
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206924062-365be887-6b74-4252-a799-6cc1f7ac2c60.png">
+
 # 5. Implementing Pipelining (For Reference Program) #
+
+For pipelining, we also had to implement Byte addressing in Data Memory. The process was virtually the same as single-cycle (except we had to remember to carry addr_mode across two flip-flops. Adding NOPs to the earlier test machine code yielded successful results. Our final diagram:
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206924177-a8d751b1-9eb6-434d-adb4-0a75d68586d1.png">
 
 # 6. Caching for F1 #
 ## Planning
