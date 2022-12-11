@@ -2,16 +2,20 @@
 
 **Note for examiner**
 * folder *rtl* contains failed attempt for implementing RV321 for our own machine code
-* folder *rtl2* contains successful files for implementing RV321 for our own machine code
-* folder *pipelining* contains successful files for pipelining
+* folder *rtl2* contains successful files for implementing single-cycle RV321 for our own machine code
+* folder *pipelining* contains successful files for pipelining for our own machine code
+* folder *rtl3* contains successful files for implementing single-cycle RV321 for the reference program
+* folder *pipelining2* contains successful files for pipelining for the reference program
 
 Assembly code for f1 lights can be found in the *test* folder.
 
 # Summary of our approach #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
 2. **Implementing RV321 Design (For our own machine code)**: We then documented the changes we made, each of us contributing to the writeup of the task we completed. 
-3. **Implementing Pipelining**: Made initial changes (and planned diagram), added 4 flip-flops, debugged and tested for our own machine code.
+3. **Implementing Pipelining (For our own machine code)**: Made initial changes (and planned diagram), added 4 flip-flops, debugged and tested for our own machine code.
 4. **Implementing RV321 Design (For Reference Program)**
+5. **Implementing Pipelining (For Reference Program)**
+6. **Explaining Caching Principles**
 
 # 1. Planning Single-Cycle RV321 Design #
 The planning section was done together as a group.
@@ -240,8 +244,10 @@ For the 4 Flip-Flops, we create four separate modules for each of them. Each hav
 And our code worked!
 
 # 4. Implementing RV321 Design (For Reference Program) #
+  
+# 5. Implementing Pipelining (For Reference Program) #
 
-# 5. Implementing Caching #
+# 6. Caching #
 ## Planning
 We design our data cache system for spatial locality.
 C = 8 words
