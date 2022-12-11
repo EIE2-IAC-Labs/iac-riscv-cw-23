@@ -40,6 +40,8 @@ logic [DATA_WIDTH-1:0] ReadData;
 logic [DATA_WIDTH-1:0] TriggerOutput;
 logic [DATA_WIDTH-1:0] Result;
 
+logic addr_mode;
+
 assign rs1 = {{11'b0},instr[19:15]};
 assign rs2 = {{11'b0},instr[24:20]};
 assign rd = {{11'b0},instr[11:7]};
@@ -72,7 +74,8 @@ Control_Unit control_unit_instance(
     .ResultSrc (ResultSrc),
     .MemWrite(MemWrite),
     .JUMPRT(JUMPRT),
-    .MUXJUMP(MUXJUMP)
+    .MUXJUMP(MUXJUMP),
+    .addr_mode(addr_mode)
 );
 
 Sign_extend sign_extend_instance(
@@ -110,7 +113,8 @@ DataMemory data_memory_instance(
     .WE (MemWrite),
     .A (ALUout),
     .WD (regOp2),
-    .RD (ReadData)
+    .RD (ReadData),
+    .addr_mode(addr_mode)
 );
 
 assign TriggerOutput = TRIGGERSEL ? ReadData : ALUout; //Trigger Mux

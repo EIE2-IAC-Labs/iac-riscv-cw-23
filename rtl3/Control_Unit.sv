@@ -69,7 +69,7 @@ always_comb begin
         assign PCsrc = 0;
         assign JUMPRT = 0;
 
-        casez(funct3)
+        casez(funct3) //specifies whether it is byte or word load
             default: assign addr_mode = 0;
             3'b100: assign addr_mode = 1;
             3'b010: assign addr_mode = 0;
@@ -88,7 +88,7 @@ always_comb begin
         assign PCsrc = 0;
         assign JUMPRT = 0;
 
-        casez(funct3)
+        casez(funct3) //specifies whether it is byte or word store
             default: assign addr_mode = 0;
             3'b000: assign addr_mode = 1;
             3'b010: assign addr_mode = 0;
