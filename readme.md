@@ -273,13 +273,13 @@ To do so we needed to make changes to our data memory. We needed to:
 
 Our final diagram:
 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206924062-365be887-6b74-4252-a799-6cc1f7ac2c60.png">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206924062-365be887-6b74-4252-a799-6cc1f7ac2c60.png">
 
 # 5. Implementing Pipelining (For Reference Program) #
 
 For pipelining, we also had to implement Byte addressing in Data Memory. The process was virtually the same as single-cycle (except we had to remember to carry addr_mode across two flip-flops. Adding NOPs to the earlier test machine code yielded successful results. Our final diagram:
 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/69715492/206924177-a8d751b1-9eb6-434d-adb4-0a75d68586d1.png">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206924177-a8d751b1-9eb6-434d-adb4-0a75d68586d1.png">
 
 # 6. Caching for F1 #
 ## Planning
