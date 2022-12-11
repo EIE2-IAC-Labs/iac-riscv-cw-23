@@ -7,11 +7,6 @@
 
 Assembly code for f1 lights can be found in the *test* folder.
 
-
-**Github repo master:** Hanbo
-
-**Editor & writeup:** Anish
-
 # Summary of our approach #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
 2. **Implementing RV321 Design (For our own machine code)**: We then documented the changes we made, each of us contributing to the writeup of the task we completed. 
