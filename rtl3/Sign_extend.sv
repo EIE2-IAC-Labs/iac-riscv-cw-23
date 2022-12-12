@@ -1,15 +1,18 @@
 module Sign_extend (
     input logic [2:0]   ImmSrc,
+    /* verilator lint_off UNUSED */
     input logic [31:0]  instr,
+    /* verilator lint_on UNUSED */
     output logic [31:0] ImmExt
 );
 
-    logic dummy_wire;
 
 always_comb
 
     casez(ImmSrc)
-    default: assign dummy_wire = 0; 
+    default: begin
+        ImmExt = 0;
+     end 
     3'b000: if (instr[31])                                      // I type   12 bits immediate is from the instruction bit [31:20]
                 assign ImmExt = ({20'hFFFFF, instr[31:20]});
             else

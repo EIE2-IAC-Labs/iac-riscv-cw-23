@@ -1,6 +1,8 @@
 module Control_Unit (
     input logic         Zero,
+    /* verilator lint_off UNUSED */
     input logic  [31:0] instr,
+    /* verilator lint_ons UNUSED */
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
@@ -15,7 +17,9 @@ module Control_Unit (
 
 logic [6:0]         op;
 logic [2:0]         funct3;
+/* verilator lint_off UNUSED */
 logic [6:0]         funct7;
+/* verilator lint_on UNUSED */
 logic [1:0]         ALUOp;
 logic [1:0]         opfunct7;
 //logic               Branch;
@@ -187,6 +191,7 @@ always_comb begin
            3'b110: assign ALUctrl = 3'b011;                            // or
            3'b111: assign ALUctrl = 3'b010;                            // and
            3'b001: assign ALUctrl = 3'b100;                            // shift left
+           default: ALUctrl = 0;
            endcase
     2'b11: assign ALUctrl = 3'b110;                                       // ALUResult = SrcB
     endcase

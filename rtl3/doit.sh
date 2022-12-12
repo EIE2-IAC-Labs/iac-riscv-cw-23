@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # clean up
 rm -rf obj_dir
 rm -f top.vcd

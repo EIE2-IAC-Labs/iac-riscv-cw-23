@@ -30,7 +30,6 @@ logic [DATA_WIDTH-1:0] ALUop1;
 logic [DATA_WIDTH-1:0] ALUop2;
 logic [DATA_WIDTH-1:0] regOp2;
 logic [DATA_WIDTH-1:0] ALUout;
-logic EQ;
 //orange
 logic [DATA_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] PC;

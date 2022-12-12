@@ -3,7 +3,9 @@ module Instr_Mem # (
                 DATA_WIDTH = 8,
                 OUT_WIDTH = 32
 )(
+    /* verilator lint_off UNUSED */
     input logic [ADDRESS_WIDTH-1:0] A,
+    /* verilator lint_on UNUSED */
     output logic [OUT_WIDTH-1:0] RD
 );
 
