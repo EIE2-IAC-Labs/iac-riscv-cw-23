@@ -297,7 +297,7 @@ Both misses are compulsory misses due to first time fetch.
 We first check if there is desired cached data in our desired memory address, if so, load cached data into register file.
 If not, we store the current value along with 3 other spatially related values in a set in data cache.
 
-## Caching for Reference Program #
+# 7. Caching for Reference Program #
 
 To implement data caching in SystemVerilog, We would first need to design the cache memory itself. This would involve deciding on the number of sets and the number of blocks in each set, as well as the size of each block in terms of words. We chose to use direct-mapping with 1 block per set, where the block size is 4 and there are 4 sets. In total it would store 16 words.
 
