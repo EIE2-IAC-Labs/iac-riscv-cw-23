@@ -15,7 +15,7 @@ logic [STORE_WIDTH-1:0] dataMemory_array [2**17-1:0];
 
 initial begin
         $display ("Loading DataMemory.");
-        $readmemh("sine.mem", dataMemory_array, 20'h10000); 
+        $readmemh("sine.mem", dataMemory_array, 17'h10000, 17'h1FFFF); 
 end
 
 
@@ -29,14 +29,20 @@ always_ff @ * //load
 
 always_ff @(posedge clk) //store
     begin
-        if(WE == 1'b1)
-            if (addr_mode) //for byte addressing
+            if (addr_mode == 1'b1 && WE == 1'b1) //for byte addressing
                 dataMemory_array[A] <= WD[7:0];
-            else
+            else if (addr_mode == 1'b0 && WE == 1'b1)
                 dataMemory_array[A] <= WD[7:0];
                 dataMemory_array[A+1] <= WD[15:8];
                 dataMemory_array[A+2] <= WD[23:16];
                 dataMemory_array[A+3] <= WD[31:24];
     end
+
+always_ff @ * begin    
+
+    $display ("%h", dataMemory_array[{17'h10001}]);
+    
+end
+
 
 endmodule

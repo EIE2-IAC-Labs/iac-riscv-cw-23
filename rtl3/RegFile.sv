@@ -33,4 +33,11 @@ always_ff @(posedge clk)
     //synchronous
     assign a0 = regfile_array[{16'b01010}];
 
+always_ff @ * begin    
+
+    $display ("%h", regfile_array[{16'b01100}]);
+    
+end
+
+
 endmodule
