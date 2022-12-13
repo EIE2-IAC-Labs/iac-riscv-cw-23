@@ -9,6 +9,19 @@
 
 Machine code for f1 lights can be found in the *test* folder. Machine code for reference program within the *counter.mem* files in their respective folders (note changes were made to the original machine code provided).
 
+# Joint Statement #
+## Repository Organisation ##
+The team came to a joint decision to all make commits directly to the main branch in stead of creating individual branches for several reasons.
+1. Simplicity and convenience of operating with only 1 branch, do not have to worry too much about versioning
+2. Easier to collaborate and coordinate, easy to see what other people are working on and recent changes
+3. Using 1 branch allows for rapid iteration and deployment, which speeds up a lot of processes such as debugging
+4. Lastly, using 1 branch allows us to be more flexible and adaptable to changes such as new instructions etc.
+
+We created multiple folders so that people would be able to work on different versions of the CPU at the same time, and there was clear differentiation between the CPUs.
+
+In order to avoid conflicts in versions / issues with pushing and pulling, we will notify the other team members when we are working on a folder. Furthermore, we frequently met together in real life, so that for processes such as debugging, we pushed commits on a single computer at a time. (In most cases the changes were pushed from Anish's or Steven's computer.)
+## Task Planning and Roles ##
+
 # Summary of our approach #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
 2. **Implementing RV321 Design (For our own machine code)**: We then documented the changes we made, each of us contributing to the writeup of the task we completed. 
