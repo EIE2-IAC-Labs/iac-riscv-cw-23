@@ -11,18 +11,19 @@ Machine code for f1 lights can be found in the *test* folder. Machine code for r
 
 # Joint Statement #
 ## Repository Organisation ##
-The team came to a joint decision to all make commits directly to the main branch in stead of creating individual branches for several reasons.
-1. Simplicity and convenience of operating with only 1 branch, do not have to worry too much about versioning
-2. Easier to collaborate and coordinate, easy to see what other people are working on and recent changes
-3. Using 1 branch allows for rapid iteration and deployment, which speeds up a lot of processes such as debugging
-4. Lastly, using 1 branch allows us to be more flexible and adaptable to changes such as new instructions etc.
+The team decided to make commits directly to the main branch of the repo instead of creating individual branches for several reasons:
 
-We created multiple folders so that people would be able to work on different versions of the CPU at the same time, and there was clear differentiation between the CPUs.
+1. Simplicity and convenience of operating with only one branch, without having to worry about versioning.
+2. Easier collaboration and coordination, as it is easy to see what other team members are working on and recent changes.
+3. Using one branch allows for rapid iteration and deployment, which speeds up processes such as debugging.
+4. Lastly, using one branch allows for flexibility and adaptability to changes such as new instructions.
 
-In order to avoid conflicts in versions / issues with pushing and pulling, we will notify the other team members when we are working on a folder. Furthermore, we frequently met together in real life, so that for processes such as debugging, we pushed commits on a single computer at a time. (In most cases the changes were pushed from Anish's or Steven's computer.)
+To facilitate concurrent work on different versions of the CPU, we created multiple folders. This also helped to differentiate between the different CPU features (e.g. pipelined vs not pipelined).
+
+To avoid conflicts in versions and issues with pushing and pulling, we notified other team members when we were working on a folder. Additionally, we frequently met in person to work on the project together, and in most cases, changes were pushed from a single team member's computer (usually Anish's or Steven's).
 ## Task Planning and Roles ##
 The table of contributions is in the test folders.
-However, note that since the team members frequently met up to work together, and to further avoid issues with git, some changes and files would have been pushed from a team members' computer.
+However, note that since the team members frequently met up to work together, and to further avoid issues with git, some changes and files would have been pushed from another team members' computer.
 
 # Summary of our approach #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
