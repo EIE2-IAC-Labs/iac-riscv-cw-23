@@ -51,10 +51,11 @@ int main(int argc, char **argv, char **env) {
        plot += 1;
     }
     
+    /*
     if (plot > 512) {
       break;
     }
-    
+    */
 
     // 
     // vbdCycle(simcyc+1);

@@ -3,7 +3,7 @@
 #include "Vtop.h"
 
 #include "vbuddy.cpp"     // include vbuddy code
-#define MAX_SIM_CYC 1000
+#define MAX_SIM_CYC 100000000
 
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
@@ -28,6 +28,7 @@ int main(int argc, char **argv, char **env) {
   top->rst = 1;
 
 
+   int plot = 0;
   // run simulation for MAX_SIM_CYC clock cycles
   for (simcyc=0; simcyc<MAX_SIM_CYC; simcyc++) {
     // dump variables into VCD file and toggle clock
@@ -38,19 +39,27 @@ int main(int argc, char **argv, char **env) {
     }
     top->rst = 0;
     top->TRIGGERSEL = 1;
+
+    
+    if (plot == 0 && top->a0 != 0) {
+       plot = 1;
+    }
     
     // plot ROM output and print cycle count
-    vbdHex(4, (int(top->a0) >> 16) & 0xF);
-    vbdHex(3, (int(top->a0) >> 8) & 0xF);
-    vbdHex(2, (int(top->a0) >> 4) & 0xF);
-    vbdHex(1, int(top->a0) & 0xF);
-    vbdCycle(simcyc+1);
-
-        // Display toggle neopixel
-   
-    vbdBar(top->a0);
-    top->rst = vbdFlag();
+    if (plot >= 1 ) {
+       vbdPlot(int(top->a0), 0, 255);
+       plot += 1;
+    }
+    /*
+    if (plot > 10000) {
+      break;
+    }
+    */
     
+
+    // 
+    // vbdCycle(simcyc+1);
+
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 
       exit(0);                // ... exit if finish OR 'q' pressed
