@@ -20,7 +20,7 @@ The team decided to make commits directly to the main branch of the repo instead
 
 To facilitate concurrent work on different versions of the CPU, we created multiple folders. This also helped to differentiate between the different CPU features (e.g. pipelined vs not pipelined).
 
-To avoid conflicts in versions and issues with pushing and pulling, we notified other team members when we were working on a folder. Additionally, we frequently met in person to work on the project together, and in most cases, changes were pushed from a single team member's computer (usually Anish's or Steven's).
+To avoid conflicts in versions and issues with pushing and pulling, we notified other team members when we were working on a folder. Additionally, we frequently met in person to work on the project together, and in most cases, changes were pushed from a single team member's computer (usually Anish's or Pengyuan's).
 ## Task Planning and Roles ##
 The table of contributions is in the test folders.
 However, note that since the team members frequently met up to work together, and to further avoid issues with git, some changes and files would have been pushed from another team members' computer.
