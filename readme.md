@@ -275,11 +275,20 @@ Our final diagram:
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206924062-365be887-6b74-4252-a799-6cc1f7ac2c60.png">
 
+The machine code for the reference program is almost the same as what is provided. However, we discover a issue in the initialization stage where the line decrement a1 should be addi a1,a1,1. In addition, we change RET to JALR ra,ra becuase RET instruction mess up with ZERO register. The machine code adjusted is shown below:
+
+![image](https://user-images.githubusercontent.com/106196514/207407132-281ba575-0761-4a1c-ab6a-3a1b3df010be.png)
+![image](https://user-images.githubusercontent.com/106196514/207407202-0f2b7ac1-5aaa-40f2-a0ad-40682cf2af53.png)
+
+
+
 # 5. Implementing Pipelining (For Reference Program) #
 
 For pipelining, we also had to implement Byte addressing in Data Memory. The process was virtually the same as single-cycle (except we had to remember to carry addr_mode across two flip-flops. Adding NOPs to the earlier test machine code yielded successful results. Our final diagram:
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206924177-a8d751b1-9eb6-434d-adb4-0a75d68586d1.png">
+
+The machine code for pipelining reference program is similar to single cycle one, but we add 5 nops between each instructions. The a0 output from display is now horizontally expanded due to nops.
 
 # 6. Caching for F1 #
 ## Planning
