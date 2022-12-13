@@ -21,6 +21,8 @@ We created multiple folders so that people would be able to work on different ve
 
 In order to avoid conflicts in versions / issues with pushing and pulling, we will notify the other team members when we are working on a folder. Furthermore, we frequently met together in real life, so that for processes such as debugging, we pushed commits on a single computer at a time. (In most cases the changes were pushed from Anish's or Steven's computer.)
 ## Task Planning and Roles ##
+The table of contributions is in the test folders.
+However, note that since the team members frequently met up to work together, and to further avoid issues with git, some changes and files would have been pushed from a team members' computer.
 
 # Summary of our approach #
 1. **Planning Single-Cycle RV321 Design**: We looked at our working design of Lab 4 and made note of differences in design to the final project. We then wrote down all the new changes we needed to make and assigned it.
