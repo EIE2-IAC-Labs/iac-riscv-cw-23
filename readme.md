@@ -299,7 +299,12 @@ The machine code for the reference program is almost the same as what is provide
 ![image](https://user-images.githubusercontent.com/106196514/207407132-281ba575-0761-4a1c-ab6a-3a1b3df010be.png)
 ![image](https://user-images.githubusercontent.com/106196514/207407202-0f2b7ac1-5aaa-40f2-a0ad-40682cf2af53.png)
 
+**Things Learned/Errors Fixed whilst Debugging**
+* Our main error was not having begin and end statements within if-else. This made it so that the conditions were being met when they weren't supposed to
+* We learned using the $display() function is useful for displaying the value in RegFile or DataMemory at a specific address
+* We learned that using the following statement solved our "bits of [blank] not used" warning (here, [blank] is instr):
 
+  <img width="250" alt="image" src="https://user-images.githubusercontent.com/69715492/207483464-404a6317-c695-4f9e-8849-c64a55682762.png">
 
 # 5. Implementing Pipelining (For Reference Program) #
 
@@ -308,6 +313,8 @@ For pipelining, we also had to implement Byte addressing in Data Memory. The pro
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/206924177-a8d751b1-9eb6-434d-adb4-0a75d68586d1.png">
 
 The machine code for pipelining reference program is similar to single cycle one, but we add 5 nops between each instructions. The a0 output from display is now horizontally expanded due to nops.
+
+The same errors from 4. were carried onto 5. which we fixed. 
 
 # 6. Caching for F1 #
 ## Planning
