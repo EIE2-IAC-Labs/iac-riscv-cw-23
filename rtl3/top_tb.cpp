@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **env) {
  
   // init Vbuddy
   if (vbdOpen()!=1) return(-1);
-  vbdHeader("PROJECT: RISC-V");
+  vbdHeader("Single-Cycle");
 
   // initialize simulation inputs
   top->clk = 1;
@@ -48,14 +48,15 @@ int main(int argc, char **argv, char **env) {
     // plot ROM output and print cycle count
     if (plot >= 1) {
        vbdPlot(int(top->a0), 0, 255);
+       vbdCycle(simcyc+1);
        plot += 1;
     }
     
-    /*
+    
     if (plot > 512) {
       break;
     }
-    */
+    
 
     // 
     // vbdCycle(simcyc+1);
