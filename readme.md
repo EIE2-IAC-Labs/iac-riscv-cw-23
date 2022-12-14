@@ -23,6 +23,8 @@ The team decided to make commits directly to the main branch of the repo instead
 To facilitate concurrent work on different versions of the CPU, we created multiple folders. This also helped to differentiate between the different CPU features (e.g. pipelined vs not pipelined).
 
 To avoid conflicts in versions and issues with pushing and pulling, we notified other team members when we were working on a folder. Additionally, we frequently met in person to work on the project together, and in most cases, changes were pushed from a single team member's computer (usually Anish's or Pengyuan's).
+
+The drawback of this approach may be that the work might be incorrectly be attributed to a different team member (due to commit history). To resolve this, we added an excel table to track each teammate's task and contribution. There are also further explanations embedded throughout this document, and the personal statements will include detailed explanations of each individual's roles.
 ## Task Planning and Roles ##
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/207472030-c0c71e3e-45ef-4e4b-9a1b-d30efc9abe66.png">
 
