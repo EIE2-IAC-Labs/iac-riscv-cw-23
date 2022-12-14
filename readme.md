@@ -7,7 +7,9 @@
 * folder *rtl3* contains successful files for implementing single-cycle RV321 for the reference program
 * folder *pipelining2* contains successful files for pipelining for the reference program
 
-Machine code for f1 lights can be found in the *test* folder. Machine code for reference program within the *counter.mem* files in their respective folders (note changes were made to the original machine code provided).
+Within *test* folder:
+* Machine code for f1 and reference programs for single-cycle and pipelining can be found in the *machineCode* folder
+* Results for f1 and reference programs for single-cycle and pipelining can be found in the *results* folder
 
 # Joint Statement #
 ## Repository Organisation ##
