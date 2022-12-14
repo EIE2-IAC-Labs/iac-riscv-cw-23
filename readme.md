@@ -34,7 +34,7 @@ However, note that since the team members frequently met up to work together, an
 3. **Implementing Pipelining (For our own machine code)**: Made initial changes (and planned diagram), added 4 flip-flops, debugged and tested for our own machine code.
 4. **Implementing RV321 Design (For Reference Program)**
 5. **Implementing Pipelining (For Reference Program)**
-6. **Explaining Caching Principles**
+6. **Implementing Caching**
 
 # 1. Planning Single-Cycle RV321 Design #
 The planning section was done together as a group.
@@ -302,7 +302,7 @@ The machine code for the reference program is almost the same as what is provide
 **Things Learned/Errors Fixed whilst Debugging**
 * Our main error was not having begin and end statements within if-else. This made it so that the conditions were being met when they weren't supposed to
 * We learned using the $display() function is useful for displaying the value in RegFile or DataMemory at a specific address
-* We learned that using the following statement solved our "bits of [blank] not used" warning (here, [blank] is instr):
+* We learned that using the following statements solved our "bits of [blank] not used" warning (here, [blank] is instr):
 
   <img width="250" alt="image" src="https://user-images.githubusercontent.com/69715492/207483464-404a6317-c695-4f9e-8849-c64a55682762.png">
 
@@ -316,7 +316,7 @@ The machine code for pipelining reference program is similar to single cycle one
 
 The same errors from 4. were carried onto 5. which we fixed. 
 
-# 6. Caching for F1 #
+# 6. Caching #
 ## Planning
 We design our data cache system for spatial locality.
 C = 8 words
@@ -331,8 +331,6 @@ Both misses are compulsory misses due to first time fetch.
 ## Implementation
 We first check if there is desired cached data in our desired memory address, if so, load cached data into register file.
 If not, we store the current value along with 3 other spatially related values in a set in data cache.
-
-# 7. Caching for Reference Program #
 
 To implement data caching in SystemVerilog, We would first need to design the cache memory itself. This would involve deciding on the number of sets and the number of blocks in each set, as well as the size of each block in terms of words. We chose to use direct-mapping with 1 block per set, where the block size is 4 and there are 4 sets. In total it would store 16 words.
 
