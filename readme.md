@@ -22,7 +22,8 @@ To facilitate concurrent work on different versions of the CPU, we created multi
 
 To avoid conflicts in versions and issues with pushing and pulling, we notified other team members when we were working on a folder. Additionally, we frequently met in person to work on the project together, and in most cases, changes were pushed from a single team member's computer (usually Anish's or Pengyuan's).
 ## Task Planning and Roles ##
-The table of contributions is in the test folders.
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/207472030-c0c71e3e-45ef-4e4b-9a1b-d30efc9abe66.png">
+
 However, note that since the team members frequently met up to work together, and to further avoid issues with git, some changes and files would have been pushed from another team members' computer.
 
 # Summary of our approach #
