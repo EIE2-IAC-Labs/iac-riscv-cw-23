@@ -15,7 +15,7 @@ module DataMemory #(
 
   initial begin
     $display("Loading DataMemory.");
-    $readmemh("gaussian.mem", dataMemory_array, 17'h10000, 17'h1FFFF);
+    $readmemh("triangle.mem", dataMemory_array, 17'h10000, 17'h1FFFF);
   end
 
 

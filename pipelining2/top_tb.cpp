@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **env) {
  
   // init Vbuddy
   if (vbdOpen()!=1) return(-1);
-  vbdHeader("PROJECT: RISC-V");
+  vbdHeader("Pipelined");
 
   // initialize simulation inputs
   top->clk = 1;
