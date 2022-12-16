@@ -1,0 +1,24 @@
+### Summary List of things I did ###
+
+Rtl1 & Rtl2 - Control Unit and Sign Extension (two modules) as well as the debugging and testing process.
+
+Pipelining - I mainly worked on one of the flip-flops and the modification of the control unit. I also helped Anish to do the top-level module.
+
+### Explanation of my work ###
+__Control Unit:__ For this module, I created it based on the tables of instructions, opcodes, funct3, and funct7. The control unit has Instr as input and several control signals as outputs. By making a case of opcodes and assigning different output values to different cases, the control unit knows which control signals to output at each cycle. A default state is used so that if the opcodes do not match any cases, the control signal should be at the default stage, not staying at the previous cycle. For more information on control signals and instructions, please see the joint statement (readme file on the front page). It contains pictures of how signals pass through the processor for each instruction.
+
+__Sign extension:__ For this module, I also created based on the tables given in the lecture. The module has input Instr and 3 bits ImmSrc (Control unit) and 32-bit sign-extended output. The 3 bits ImmSrc is used to distinguish 5 different types of instructions, including Immediate, Branch, Store, Jump, and Upper Immediate. Each type has different ways of extending the immediate. To see more information on how sign-extension works for each type of instruction, please see the joint statement.
+
+### Things I learned ###
+
+In this project, I learned how we can use System Verilog to implement different modules and top them together to create a big connected module by simply looking at the schematic graphs. Working together with team members, we managed to finish the RISC-V processor in time. I believe teamwork and collaboration are the foundation of our success, especially for the hard work and extra time all of us contributed to the task.
+
+Major mistakes we made:
+1. At the final testing stage of rtl2, we found that the assembly code given from the website was not jumping or branching to the right addresses that I wanted. Initially, we thought that there is a mistake in generating the assembly code from the website, so we tried to change the machine code by writing down the machine code we presumed according to the tables. However, after consulting with the other groups that did not have this error, we figured out there is a problem with our sign-extension unit. According to RISC-V specification, the immediate from branch and jump instruction should sign extend 19 bits and add a zero at the lowest bit instead of sign extend 20 bits. After this change, the branch and jump instructions worked fine.
+
+2. In the reference program debugging process, we found something strange happened every time the build stage started. The memory file that stores into address 0x00010000 to 0x0001FFFF changed to 0 instead of the pre-stored values. We initially thought that it might be an issue with storing the frequency value at the wrong address that might mess up the memory file value. However, after tracing back through GTKWAVE, the address and data at the store stage are working as expected. This problem takes us a day to solve after consulting with UTAs that there are missing begin and end statements in our data memory module that always store in data no matter whether WE is asserted or not. The problem is easy to fix but hard to detect. After this mistake, we learned that it is better to add begin and end for all statements because missing them does mess up the final output. UTA also recommended us to install System Verilog and Verilog Formatter which automatically helps us format our code and add up missing begin - end.
+
+3. When we are debugging Rtl2, we found that the processor works fine for all the cycles. But after finishing all instructions, instead of doing nops, it starts to jump to other addresses． After tracing through the signals, we found that the control signals remain the same as the last instruction, which is a JALR instruction. This instruction has PCSrc equal to 1 instead of 0 (PC+4), which causes the program to jump to other addresses instead of doing nops. We soon noticed that the reason for this is we forgot to add a default statement for control signals. When the opcodes do not match any cases we listed, the control signals remain the same as the last instruction. By adding a default statement, the issue was resolved.
+
+4. Naming problem. When we are modifying our single-cycle program into a pipelined version, we encountered a long and exhaustive debugging process, the main issue is the wrong connection of logic wires in the top module when switching the two designs. If I were to complete the project again, I will name each wire properly according to the schematics and make a check box to verify each wire's correct connection.
+
