@@ -25,4 +25,10 @@ Making the following changes in **rtl2** was a success. Some of the errors menti
 
 My module contribution to **rtl3** was editing the data memory so it could implement byte addressing as well. This involved coordinating with Pengyuan to help feed an extra control input into the data memory which specified address mode. Then I split the elements stored in the array from being 32-bits to 8-bits. This meant that for word addressing the output would have to be 4 corresponding byte addresses concatenated together. My approach was successful (except I forgot to add begin-end statements causing issues, which was corrected during debugging). For rtl3 I used the same debugging approach as rtl and rtl2. I also learned a few new method of debugging and some methods to get rid of the warning signs (discussed under next heading).
 
+For **pipelining**, I started off the module addition with the first flip-flop which was straight-forward. But I set the precedent for how the wires were to be labeled. Then once everyone else had finished the other three flip-flops I put it all together in the top-level module. A mistake I made was although I got the connections into the flip-flops correct I did not update the other modules (multiplexer, ALU, data memory) with the delayed signals. This caused issues which were fixed during debugging.
+
+Changes to **pipelining2** were very minor: I replicated the work I had done with rtl3 for the data memory.
+
+To implement **caching** the team had a lengthy discussion which has been documented in our team readme.md file. I then implemented those ideas in the cache_controller module.
+
 # Things I learned #
