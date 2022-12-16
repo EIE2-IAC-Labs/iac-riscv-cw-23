@@ -49,3 +49,8 @@ To implement **caching** the team had a lengthy discussion which has been docume
 * More teamwork experience
 * Improved perseverance and grit during debugging process
 
+**Things I Would Do Differently**
+*
+While debugging:
+* Longer team sessions together. We realised that often it would take an hour or two to just understand the problem that we were debugging before we got a chance to fix it.
+* However with those longer sessions in mind, we should've taken more regular breaks. We noticed that the longer we spent on the problem the more silly mistakes we would make with our execution leading to unnecessary errors.
