@@ -58,11 +58,11 @@ For this stage of the project, we are all committing directly to the main branch
 
 We delegated the tasks modularly:
 
-* **Creating Machine Code**: *Entire team*
-* **ALU**: *Diyang*; adding load immediate instruction into ALU
-* **Control Unit**: *Pengyuan*; implementing control signals for JAl and Load/Store instructions plus jump and return multiplexers
-* **Data Memory and Trigger Multiplexer**: *Anish*; created data memory module and trigger multiplexer
-* **Top-level module checks and Testing**: *Hanbo*; ensuring variable names are consistent, debugging, simulating on GTK wave and checking that machine code works
+* **Creating Machine Code**
+* **ALU**: adding load immediate instruction into ALU
+* **Control Unit**: implementing control signals for JAl and Load/Store instructions plus jump and return multiplexers
+* **Data Memory and Trigger Multiplexer**: created data memory module and trigger multiplexer
+* **Top-level module checks and Testing**: ensuring variable names are consistent, debugging, simulating on GTK wave and checking that machine code works
 
 ## Creating Machine Code ##
 Working together, we devised the following machine code: 
