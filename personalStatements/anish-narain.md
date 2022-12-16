@@ -32,3 +32,10 @@ Changes to **pipelining2** were very minor: I replicated the work I had done wit
 To implement **caching** the team had a lengthy discussion which has been documented in our team readme.md file. I then implemented those ideas in the cache_controller module.
 
 # Things I learned #
+**Technical Skills**
+* Ofcourse I learned the basics of system verilog and designing processor architecture
+* But I found the debugging and testing process far more insightful. Initially I learned how to use GTKWave to plot the wavefunctions and identify discrepancies between expectation and result
+* In the process I learned to add libraries in VS Code to clean code, always including begin-end statements, especially within if-else
+* I learned how to address "bits not used" from a wire
+* I learned how to use the $display() function to my benefit for identifying values within the register file and data memory
+
