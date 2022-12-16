@@ -50,7 +50,11 @@ To implement **caching** the team had a lengthy discussion which has been docume
 * Improved perseverance and grit during debugging process
 
 **Things I Would Do Differently**
-*
-While debugging:
+*While implementing*
+* There should have been less of a disconnect between people implementing individual modules and person implementing top-level modules. This would've avoided a few unnecessary errors in the beginning
+* Ensuring the entire team had a thorough understanding of the entire architecture even if they're only responsible for a specific component. In this way, for later iterations, a different person could take on something someone else had been responsible for with ease.
+* More consistent variable names
+* Better documentation about wire widths
+*While debugging:*
 * Longer team sessions together. We realised that often it would take an hour or two to just understand the problem that we were debugging before we got a chance to fix it.
 * However with those longer sessions in mind, we should've taken more regular breaks. We noticed that the longer we spent on the problem the more silly mistakes we would make with our execution leading to unnecessary errors.
