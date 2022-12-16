@@ -1,18 +1,28 @@
 # Summary of what I did #
 * I was the **main editor** for the team documentation and at times, took the lead as project manager, arranging meetings and setting team deadlines
-* **rtl**: Created ALU and RegFile modules. Led the debugging and helped with testbench
-* **rtl2**: Debugged the ALU, changed the testbench, helped with debugging the top-level module and helped final testing of new rtl2 design
+* **rtl**: Edited ALU. Led the debugging and helped with testbench
+* **rtl2**: Debugged the ALU, changed the TRIGGERSEL multiplexer, helped with debugging the top-level module and helped final testing of new rtl2 design
 * **rtl3**: Changed the data memory to include byte and word addressing and led the debugging against the reference code
 * **pipelining**: I made the first flip-flop and put everything altogether in the top-level module
 * **pipelining2**: I helped change the data memory to include byte and word addressing as well
 * **caching**: I helped plan our approach and created the cache_controller module
 
 # Explanations #
-During the final year project last year, I led my team as project manager and in turn, editor of our report. I thoroughly enjoyed the role because I like planning and organising. For this coursework I employed the following things I learned from my experience last year:
+During the final year project last year, I led my team as **project manager** and in turn, **editor** of our report. I thoroughly enjoyed the role because I like planning and organising. For this coursework I employed the following things I learned from my experience last year:
 * Documenting along as we made progress. It was easy to do lots of lab work without documentation but that leads to having a lot of write-up piled up and the writer forgetting things we had done in that session. Thus, by documenting the work as we went, I made it easy for whoever was doing the write-up to just have a small amount to write after that session and be able to write down all the relevant points while it was still fresh on their mind.
 * Arranging regular meeting sessions. This served a few purposes. During team projects it was inevitable for a team member to miss sessions so meetings make it easy to keep everyone up to speed with progress and give a chance for healthy discussion. Furthermore, keeping tabs on progression made it far easier to plan and make deadlines.
 * Outlining our aims clearly in bullet points so team members knew exactly what the remaining tasks were. This made it easy for me to coordinate our approach.
 
+For **rtl**, I added the opcode associate with load upper immediate and used the simple assignment operator to implement it. I helped edit the testbench to include the vbdBar() function so we could turn on the F1 lights. And I led our debugging. This involved running GTKWave and checking if the signals matched as the instruction went through the architecture. 
 
+During the debugging we quickly realised we had the following issues:
+* Syntax errors
+* TRIGGERSEL multiplexer not working because as a result of the additional multiplexer, data memory was being bypassed. Therefore, because of the addition, the load/store instructions were not being implemented.
+* Inconsistencies with bit widths between top-level module and control unit
+* Incorrect concatenation in sign-extend module.
+
+Making the following changes in **rtl2** was a success. Some of the errors mentioned above were shared between rtl and rtl2. But in the end, after making the right fixes, rtl2 was able to successfully implement our modified machine code.
+
+My module contribution to **rtl3** was editing the data memory so it could implement byte addressing as well. This involved coordinating with Pengyuan to help feed an extra control input into the data memory which specified address mode. Then I split the elements stored in the array from being 32-bits to 8-bits. This meant that for word addressing the output would have to be 4 corresponding byte addresses concatenated together. My approach was successful (except I forgot to add begin-end statements causing issues, which was corrected during debugging). For rtl3 I used the same debugging approach as rtl and rtl2. I also learned a few new method of debugging and some methods to get rid of the warning signs (discussed under next heading).
 
 # Things I learned #
