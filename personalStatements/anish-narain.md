@@ -38,4 +38,14 @@ To implement **caching** the team had a lengthy discussion which has been docume
 * In the process I learned to add libraries in VS Code to clean code, always including begin-end statements, especially within if-else
 * I learned how to address "bits not used" from a wire
 * I learned how to use the $display() function to my benefit for identifying values within the register file and data memory
+* I understood additional commands to add to a .sh file to debug
+* I got far more comfortable with the command line and GitHub
+
+**Soft Skills**
+* Improved team management
+* Better at deadlining and organisations
+* Better at keeping up a strong online and in-person communication channel
+* Better at documentation, clarity and readability with work produced to be used by others
+* More teamwork experience
+* Improved perseverance and grit during debugging process
 
