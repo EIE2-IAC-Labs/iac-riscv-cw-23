@@ -57,6 +57,7 @@ To implement **caching** the team had a lengthy discussion which has been docume
 * Ensuring the entire team had a thorough understanding of the entire architecture even if they're only responsible for a specific component. In this way, for later iterations, a different person could take on something someone else had been responsible for with ease.
 * More consistent variable names
 * Better documentation about wire widths
+* More collaboration between people working on individual modules
 
 *While debugging*
 
