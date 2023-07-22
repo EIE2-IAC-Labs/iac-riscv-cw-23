@@ -1,4 +1,4 @@
-# Team 23
+# RISC-V CPU
 
 **Note for examiner**
 * folder *rtl* contains failed attempt for implementing RV321 for our own machine code
